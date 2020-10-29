@@ -1,0 +1,13 @@
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\DTO.dll.config
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\DTO.dll
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\DTO.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\AutoMapper.dll
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\EntityFramework.dll
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\AutoMapper.xml
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\EntityFramework.xml
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\obj\Debug\DTO.csproj.CopyComplete
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\obj\Debug\DTO.dll
+C:\Users\Lenovo\Desktop\TradingCompany\DTO\obj\Debug\DTO.pdb

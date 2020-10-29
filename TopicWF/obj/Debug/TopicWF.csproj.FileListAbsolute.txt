@@ -1,0 +1,9 @@
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\TopicWF.exe.config
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\TopicWF.exe
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\TopicWF.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.csprojAssemblyReference.cache
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.Properties.Resources.resources
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.csproj.GenerateResource.cache
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.exe
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.Login.resources

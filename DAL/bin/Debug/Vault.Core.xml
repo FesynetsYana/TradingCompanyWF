@@ -1,0 +1,1614 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vault.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Vault.Core.VirusScanStatus">
+            <summary>
+            Incidates status of virus scan process.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.VirusScanStatus.Clean">
+            <summary>
+            No virus was found.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.VirusScanStatus.Infected">
+            <summary>
+            File was infected with virus.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.VirusScanStatus.Failed">
+            <summary>
+            Scan was not performed due to internal failure.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.HtmlAgilityPackSanitizerProvider">
+            <summary>
+            Sanitizer class that allows tag and attributes those are in whitelist and removes
+            other tags and attributes. This also cleans attribute values to remove vulnerable
+            words and characters
+            </summary>
+        </member>
+        <member name="M:Vault.Core.HtmlAgilityPackSanitizerProvider.#ctor">
+            <summary>
+            Constructor to initialize array of encoded values.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.HtmlAgilityPackSanitizerProvider.ApplicationName">
+            <summary>
+            Property to provide name of Application.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.HtmlAgilityPackSanitizerProvider.RequiresFullTrust">
+            <summary>
+            Property that indicates that RequiresFullTrust is not necessary for this sanitizer. 
+            </summary>
+        </member>
+        <member name="M:Vault.Core.HtmlAgilityPackSanitizerProvider.GetSafeHtmlFragment(System.String,System.Collections.Generic.Dictionary{System.String,System.String[]},System.Collections.Generic.Dictionary{System.String,System.String[]})">
+            <summary>
+            This accepts html text and white list for tags and attributes and 
+            returns safe html text.
+            </summary>
+            <param name="htmlFragment">Html Content which need to sanitze.</param>
+            <param name="elementWhiteList">Whitelist of tags.</param>
+            <param name="attributeWhiteList">WhiteList of attributes.</param>
+            <returns>Html text after sanitize.</returns>
+        </member>
+        <member name="M:Vault.Core.HtmlAgilityPackSanitizerProvider.SanitizeHtml(System.String,System.Collections.Generic.Dictionary{System.String,System.String[]},System.Collections.Generic.Dictionary{System.String,System.String[]})">
+            <summary>
+            This method actually do the process of sanitization.
+            </summary>
+            <param name="htmlText">Html Content which need to sanitze.</param>
+            <param name="elementWhiteList">Whitelist of tags.</param>
+            <param name="attributeWhiteList">WhiteList of attributes.</param>
+            <returns>Html text after sanitize.</returns>
+        </member>
+        <member name="M:Vault.Core.HtmlAgilityPackSanitizerProvider.CleanNodes(HtmlAgilityPack.HtmlNode,System.String[])">
+            <summary>
+            This removes the current node tags and its child nodes if these are not in whitelist.
+            </summary>
+            <param name="node"></param>
+            <param name="tagWhiteList"></param>
+        </member>
+        <member name="M:Vault.Core.HtmlAgilityPackSanitizerProvider.CleanChildren(HtmlAgilityPack.HtmlNode,System.String[])">
+            <summary>
+            Apply CleanNodes to each of the child nodes
+            </summary>
+        </member>
+        <member name="M:Vault.Core.HtmlAgilityPackSanitizerProvider.CleanAttributeValues(HtmlAgilityPack.HtmlAttribute)">
+            <summary>
+            This removes the vulnerable keywords and make values safe by html encoding and html character escaping.
+            </summary>        
+            <param name="attribute">Attribute that contain values that need to check and clean.</param>
+        </member>
+        <member name="M:Vault.Core.HtmlAgilityPackSanitizerProvider.EncodeCharacterToHtmlEntityEscape(System.Char)">
+            <summary>
+            To encode html attribute characters to hex format except alphanumeric characters. 
+            </summary>
+            <param name="c">Character from the attribute value</param>
+            <returns>Hex formatted string.</returns>
+        </member>
+        <member name="M:Vault.Core.WYSIWYGSanitizer.AddWhiteListElement(System.String,System.String[])">
+            <summary>
+            Adds new element to white list.
+            </summary>
+            <param name="elementName">Element name, i.e. h1.</param>
+            <param name="attributes">List of attributes that are allowed for the element, i.e. style, src,...</param>
+        </member>
+        <member name="M:Vault.Core.WYSIWYGSanitizer.RemoveWhiteListElement(System.String)">
+            <summary>
+            Removes element from the white list.
+            </summary>
+            <param name="elementName">Element name, i.e. h2.</param>
+        </member>
+        <member name="T:Vault.Core.AuditType">
+            <summary>
+            Defines scope of audit
+            </summary>
+        </member>
+        <member name="F:Vault.Core.AuditType.Basic">
+            <summary>
+            Logs user and time stamps only.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.AuditType.Limited">
+            <summary>
+            Logs user and time stamps, and names of the changed properties.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.AuditType.Full">
+            <summary>
+            Logs user and time stampes, original and current values of properties with names.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.ANRGenerator">
+            <summary>
+            Alpha-Numeric Random Generator.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateElement">
+            <summary>
+            Generates one Alpha-Numeric element (character).
+            </summary>
+            <returns>Generated element.</returns>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateElementFrom(System.Collections.Generic.IEnumerable{System.Char})">
+            <summary>
+            Generates character from provided character set.
+            </summary>
+            <param name="customSet">Custom character set.</param>
+            <returns>Randomly generated character.</returns>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateElementFrom(Vault.Core.CharacterSets)">
+            <summary>
+            Generates character from specified character sets.
+            </summary>
+            <param name="sets">Character sets.</param>
+            <returns>Randomly generated character.</returns>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateElementFrom(Vault.Core.CharacterSets,System.Collections.Generic.IEnumerable{System.Char})">
+            <summary>
+            Generates character from specified character sets and custom set.
+            </summary>
+            <param name="sets">Character sets.</param>
+            <param name="customSet">Custom character set.</param>
+            <returns>Randomly generated character.</returns>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateSequence(System.Int32)">
+            <summary>
+            Generates sequence of Alpha-Numeric characters.
+            </summary>
+            <param name="length">Sequence length.</param>
+            <returns>Sequence.</returns>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateSequenceFrom(System.Collections.Generic.IEnumerable{System.Char},System.Int32)">
+            <summary>
+            Generats sequence of random characters.
+            </summary>
+            <param name="customSet">Custom set of characters.</param>
+            <param name="length">Length of sequence.</param>
+            <returns>Generated sequence of random characters.</returns>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateSequenceFrom(Vault.Core.CharacterSets,System.Int32)">
+            <summary>
+            Generates sequence based on the specified character sets.
+            </summary>
+            <param name="sets">Character sets used to generate sequence.</param>
+            <param name="length">Length of desired sequence.</param>
+            <returns>Sequence of specified length.</returns>
+        </member>
+        <member name="M:Vault.Core.ANRGenerator.GenerateSequenceFrom(Vault.Core.CharacterSets,System.Collections.Generic.IEnumerable{System.Char},System.Int32)">
+            <summary>
+            Generates sequence of random characters based on provided character sets and custom set.
+            </summary>
+            <param name="sets">Character sets.</param>
+            <param name="customSet">Custom set.</param>
+            <param name="length">Sequence length.</param>
+            <returns>Sequence of randomly generated characters.</returns>
+        </member>
+        <member name="T:Vault.Core.DTO">
+            <summary>
+            Base class to inherit from when creating DTO that must be validated.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DTO.PropertyValidationErrors">
+            <summary>
+            List of property validation errors.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.DTO.#ctor">
+            <summary>
+            Base constructor.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.DTOExtensions">
+            <summary>
+            Defines extension methods for DTO class.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.DTOExtensions.AddPropertyError``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}},System.String)">
+            <summary>
+            Adds property error for selected property and provided error message.
+            </summary>
+            <typeparam name="TSource">Object instance type.</typeparam>
+            <typeparam name="TKey">Property type.</typeparam>
+            <param name="source">Instance of object that inherits from DTO class.</param>
+            <param name="keySelector">Property selector.</param>
+            <param name="errorMessage">Validation error message.</param>
+            <returns>Instance of property validation error.</returns>
+        </member>
+        <member name="M:Vault.Core.DTOExtensions.AddRequiredPropertyError``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Adds required property error for selected property.
+            </summary>
+            <typeparam name="TSource">Object instance type.</typeparam>
+            <typeparam name="TKey">Property type.</typeparam>
+            <param name="source">Instance of object that inherits from DTO class.</param>
+            <param name="keySelector">Property selector.</param>
+            <returns>Instance of property validation error.</returns>
+        </member>
+        <member name="M:Vault.Core.DTOExtensions.Validate``1(``0)">
+            <summary>
+            Checks source object for property errors and throws PropertyValidationException if any are found.
+            </summary>
+            <typeparam name="TSource">Object instance type.</typeparam>
+            <param name="source">Instance of object that inherits from DTO class.</param>
+        </member>
+        <member name="T:Vault.Core.VirusScanResult">
+            <summary>
+            Presents result of virus scanning process.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VirusScanResult.Status">
+            <summary>
+            Status of virus scan.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VirusScanResult.Data">
+            <summary>
+            Additional data about scan process.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.VertexExtensions.GetCentroid(System.Collections.Generic.ICollection{Vault.Core.Vertex})">
+            <summary>
+            Calculates centroid of polygon based on provided set of vertices.
+            </summary>
+            <param name="vertices">Set of polygon vertices.</param>
+            <returns>Polygon centroid vertex.</returns>
+        </member>
+        <member name="M:Vault.Core.VertexExtensions.Close(System.Collections.Generic.ICollection{Vault.Core.Vertex})">
+            <summary>
+            Closes set of polygon vertices by appending first vertex as last.
+            </summary>
+            <param name="vertices">Set of polygon vertices.</param>
+            <returns>Closed set of polygon vertices.</returns>
+        </member>
+        <member name="M:Vault.Core.VertexExtensions.Open(System.Collections.Generic.ICollection{Vault.Core.Vertex})">
+            <summary>
+            Opens set of polygon vertices by removing last vertex if same as first.
+            </summary>
+            <param name="vertices">Set of polygon vertices.</param>
+            <returns>Open set of polygon vertices.</returns>
+        </member>
+        <member name="T:Vault.Core.IHierarchicalItem`1">
+            <summary>
+            Defines required properties for item that will be used in parent/children hierarchy.
+            </summary>
+            <typeparam name="T">Type of class that implements the interface.</typeparam>
+        </member>
+        <member name="M:Vault.Core.IHierarchicalItemExtensions.AddChild``1(``0,``0)">
+            <summary>
+            Adds child to parent collection / sets parent as child's parent.
+            </summary>
+            <typeparam name="T">Type of item class.</typeparam>
+            <param name="parent">Parent item.</param>
+            <param name="child">Child item.</param>
+        </member>
+        <member name="M:Vault.Core.IHierarchicalItemExtensions.CreateReferences``1(System.Collections.Generic.List{``0},System.Nullable{System.Int32})">
+            <summary>
+            Iterates through list of items and sets hierarchical references.
+            NOTE: This is recursive method, should be called once on collection, without additional parameters.
+            </summary>
+            <typeparam name="T">Type of item class.</typeparam>
+            <param name="items">Collection of items to iterate through.</param>
+            <param name="parentId">Parent item identifier.</param>
+        </member>
+        <member name="T:Vault.Core.JsonSerializerExtensions">
+            <summary>
+            Extension methods from JsonSerializer class provided by Newtonsoft.Json library.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.JsonSerializerExtensions.SerializeObject(Newtonsoft.Json.JsonSerializer,System.Object)">
+            <summary>
+            Serializes object to JSON.
+            </summary>
+            <param name="jsonSerializer">JsonSerializer instance.</param>
+            <param name="value">Object value to be serialized.</param>
+            <returns>JSON string.</returns>
+        </member>
+        <member name="T:Vault.Core.IMenuExtensions">
+            <summary>
+            Extension methods for IMenu implementations.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.IMenuExtensions.GetItems``1(``0,Vault.Core.MenuContext)">
+            <summary>
+            Returns collection of menu items for specified TMenu instance that are available under specified menuContext.
+            </summary>
+            <typeparam name="TMenu">Type of menu class.</typeparam>
+            <param name="menu">Instance of menu.</param>
+            <param name="menuContext">Menu context.</param>
+            <returns>Collection of menu items.</returns>
+        </member>
+        <member name="M:Vault.Core.IMenuExtensions.GetItems``1(``0)">
+            <summary>
+            Returns list of MenuItems for specified menu.
+            </summary>
+            <typeparam name="TMenu">Type of IMenu implementation.</typeparam>
+            <param name="menu">IMenu instance.</param>
+            <returns>List of MenuItems.</returns>
+        </member>
+        <member name="T:Vault.Core.IMenuItemProvider">
+            <summary>
+            Defines interface for MenuItem providers that are used by IMenu.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.IMenuItemProvider.Get(Vault.Core.MenuContext)">
+            <summary>
+            Returns collection of MenuItem objects that will be used to render menu.
+            </summary>
+            <param name="menuContext">Context under which menu will be rendered. Allows for same provider to be used under different conditions.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Vault.Core.MenuContext">
+            <summary>
+            Class that defines the context under which menu is rendered.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.MenuContext.ProviderParameters">
+            <summary>
+            List of parameters that are used by the provider in order to change logic of menu item collection generating.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.MenuContext.HtmlRenderingOptions">
+            <summary>
+            List of options that can be passed to html renderer responsible for creating menu HTML.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.MenuContext.AjaxContainerId">
+            <summary>
+            ID of HTML element that will be used as container for AJAX loaded views requested from the menu.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.MenuContext.AuthorizeItems">
+            <summary>
+            Indicates whether URL's on the menu should be authorized by ClaimsAuthorizationManager.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.MenuContext.RemoveEmptySections">
+            <summary>
+            Indicates whether the empty sections that contain no URL items should be removed from the collection.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.MenuContext.SetActiveItems">
+            <summary>
+            Indicates whether active items should be automatically preselected.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.MenuContext.#ctor">
+            <summary>
+            Default constructor with default values initialization.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.MenuContext.Current">
+            <summary>
+            Returns MenuContext instance set for current request via attributes.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.MenuItemExtensions">
+            <summary>
+            Extension methods for MenuItem class.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.MenuItemExtensions.Append``1(System.Collections.Generic.List{Vault.Core.MenuItem})">
+            <summary>
+            Creates instance of TMenu type and appends items to provided collection of items.
+            </summary>
+            <typeparam name="TMenu">IMenu type implementation.</typeparam>
+            <param name="items">Collection of menu items to append to.</param>
+        </member>
+        <member name="M:Vault.Core.MenuItemExtensions.Append``1(System.Collections.Generic.List{Vault.Core.MenuItem},``0)">
+            <summary>
+            Appends collection of items from existing TMenu type instance to provided collection of items.
+            </summary>
+            <typeparam name="TMenu">IMenu type implementation.</typeparam>
+            <param name="items">Collection of menu items to append to.</param>
+            <param name="menu">TMenu instance.</param>
+        </member>
+        <member name="M:Vault.Core.MenuItemExtensions.Append``1(System.Collections.Generic.List{Vault.Core.MenuItem},``0,Vault.Core.MenuContext)">
+            <summary>
+            Appends collection of items from existing TMenu type instance to provided collection of items, by using provided MenuContext.
+            </summary>
+            <typeparam name="TMenu">IMenu type implementation.</typeparam>
+            <param name="items">Collection of menu items to append to.</param>
+            <param name="menu">TMenu instance.</param>
+            <param name="menuContext">MenuContext instance.</param>
+        </member>
+        <member name="T:Vault.Core.ReflectIfAttribute">
+            <summary>
+            Used to annotate property to be skipped when using ReflectTo.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.SelectData`1">
+            <summary>
+            Response class for select2.js plugin.
+            </summary>
+            <typeparam name="TData">Type of data that will be returned.</typeparam>
+        </member>
+        <member name="P:Vault.Core.SelectData`1.More">
+            <summary>
+            Indicates whether there are more records to be provided on scroll.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.SelectData`1.Records">
+            <summary>
+            Records returned based on provided SelectParams.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.SelectParams">
+            <summary>
+            Defines parameters for select2.js lazy loading.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.SelectParams.SearchTerm">
+            <summary>
+            Term that is searched on the client side.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.SelectParams.Rows">
+            <summary>
+            Row limit that is to be returned to client side.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.SelectParams.Page">
+            <summary>
+            Current page for which results are queried.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.SelectParams.InitialKeys">
+            <summary>
+            Initial keys for which values should be retrieved.
+            Not that if this is specified, other options are ignored.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.CharExtensions">
+            <summary>
+            Provides set of extensions for Char class.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.CharExtensions.CreateSet(System.Char,System.Char)">
+            <summary>
+            Creates character set from startChar to endChar.
+            </summary>
+            <param name="startChar">Starting character.</param>
+            <param name="endChar">Ending character.</param>
+            <returns>Set of characters.</returns>
+        </member>
+        <member name="M:Vault.Core.CharExtensions.LowerCaseSet">
+            <summary>
+            Generates character set from lowercase characters.
+            </summary>
+            <returns>Lowercase character set.</returns>
+        </member>
+        <member name="M:Vault.Core.CharExtensions.DigitSet">
+            <summary>
+            Generates character set from digits characters.
+            </summary>
+            <returns>Digits character set.</returns>
+        </member>
+        <member name="M:Vault.Core.CharExtensions.UpperCaseSet">
+            <summary>
+            Generates character set from uppercase characters.
+            </summary>
+            <returns>Uppercase character set.</returns>
+        </member>
+        <member name="T:Vault.Core.FileExtensions">
+            <summary>
+            Collections of extensions for working with Files on OS.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.FileExtensions.WriteAllBytesAsync(System.String,System.Byte[],System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+            <summary>
+            Creates new file at specified filePath and writes providec content into it asynchronously.
+            </summary>
+            <param name="filePath">Location where file is to be created.</param>
+            <param name="content">Content to be written in file.</param>
+            <returns>Task to await.</returns>
+        </member>
+        <member name="M:Vault.Core.FileExtensions.ReadAllBytesAsync(System.String)">
+            <summary>
+            Reads content of file at specified filePath.
+            </summary>
+            <param name="filePath">Location of file to be read.</param>
+            <returns>Array of bytes read.</returns>
+        </member>
+        <member name="T:Vault.Core.GenericExtensions">
+            <summary>
+            Extensions methods to generics.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.GenericExtensions.NotIn``1(``0,``0[])">
+            <summary>
+            Checks whether specific element of type T is NOT present in collection of elements of type T.
+            </summary>
+            <typeparam name="TElement">Type of element.</typeparam>
+            <param name="element">Element to be matched.</param>
+            <param name="collection">Collection of elements to be matched against.</param>
+            <returns>True if match is NOT found. Otherwise false.</returns>
+        </member>
+        <member name="M:Vault.Core.GenericExtensions.In``1(``0,``0[])">
+            <summary>
+            Checks whether specific element of type T is present in collection of elements of type T.
+            </summary>
+            <typeparam name="TElement">Type of element.</typeparam>
+            <param name="element">Element to be matched.</param>
+            <param name="collection">Collection of elements to be matched against.</param>
+            <returns>True if match is found. Otherwise false.</returns>
+        </member>
+        <member name="M:Vault.Core.GenericExtensions.Compare``1(``0,``0)">
+            <summary>
+            Compares two instances of same type and produces list of property differences.
+            </summary>
+            <typeparam name="T">Type of objects to compare.</typeparam>
+            <param name="original">Original object.</param>
+            <param name="copy">Object copy.</param>
+            <returns>Collection of object property differences.</returns>
+        </member>
+        <member name="M:Vault.Core.PropertyInfoExtensions.IsComplex(System.Reflection.PropertyInfo)">
+            <summary>
+            Checks if property is complex (has own properties).
+            </summary>
+            <param name="pi">PropertyInfo instances.</param>
+            <returns>True if property is complex.</returns>
+        </member>
+        <member name="M:Vault.Core.PropertyInfoExtensions.IsIEnumerable(System.Reflection.PropertyInfo)">
+            <summary>
+            Checks if property type is derived from IEnumerable.
+            </summary>
+            <param name="pi">PropertyInfo instance.</param>
+            <returns>True if property is IEnumerable.</returns>
+        </member>
+        <member name="M:Vault.Core.PropertyInfoExtensions.IsIEnumerable``1(System.Reflection.PropertyInfo)">
+            <summary>
+            Checks if property type is derived from IEnumerable of T.
+            </summary>
+            <typeparam name="T">Type of collection element.</typeparam>
+            <param name="pi">PropertyInfo instance.</param>
+            <returns>True if property is IEnumerable of T.</returns>
+        </member>
+        <member name="T:Vault.Core.DefaultValidationResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.CompareValidationError">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; and &apos;{1}&apos; do not match..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.DecimalRegexValidationError">
+            <summary>
+              Looks up a localized string similar to The field &apos;{0}&apos; must be a decimal number..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.EmailRegexValidationError">
+            <summary>
+              Looks up a localized string similar to E-mail address is invalid..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.MaxLengthValidationError">
+            <summary>
+              Looks up a localized string similar to The field &apos;{0}&apos; must be a string or array type with a maximum length of {1}..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.MaxStringLengthValidationError">
+            <summary>
+              Looks up a localized string similar to The field &apos;{0}&apos; must be a string with a maximum length of {1}..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.MinLengthValidationError">
+            <summary>
+              Looks up a localized string similar to The field &apos;{0}&apos; must be a string or array type with a minimum length of {1}..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.NumberRegexValidationError">
+            <summary>
+              Looks up a localized string similar to The field &apos;{0}&apos; must be a number..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.PasswordRegexValidationError">
+            <summary>
+              Looks up a localized string similar to Password must be between 6-20 characters long, and must contain at least 1 lowercase letter, uppercase letter, digit and special character..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.RangeStringLengthValidationError">
+            <summary>
+              Looks up a localized string similar to The field &apos;{0}&apos; must be a string with a minimum length of {2} and a maximum length of {1}..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.RangeValidationError">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; must be within range {1} - {2}..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DefaultValidationResource.RequiredValidationError">
+            <summary>
+              Looks up a localized string similar to &apos;{0}&apos; is required..
+            </summary>
+        </member>
+        <member name="M:Vault.Core.ReflectionExtensions.ReflectTo``1(System.Object)">
+            <summary>
+            Copies instance of a an object to instance of type T. Works only with simple properties.
+            </summary>
+            <typeparam name="T">Destination type.</typeparam>
+            <param name="original">Source instance.</param>
+            <returns>Destination type instance.</returns>
+        </member>
+        <member name="M:Vault.Core.ReflectionExtensions.ReflectTo``1(System.Object,``0)">
+            <summary>
+            Copies instance of an object to instance of type T. Works only with simple properties.
+            </summary>
+            <typeparam name="T">Destination type.</typeparam>
+            <param name="original">Source instance.</param>
+            <param name="TCopy">Destination instance.</param>
+            <returns>Modified destination instance.</returns>
+        </member>
+        <member name="M:Vault.Core.ReflectionExtensions.ReflectTo``1(System.Object,``0,System.String[])">
+            <summary>
+            Copies instance of an object to instance of type T.
+            Note: Works only with simple properties.
+            </summary>
+            <typeparam name="T">Destination type.</typeparam>
+            <param name="original">Source instance.</param>
+            <param name="TCopy">Destination instance.</param>
+            <param name="exclusionList">Property exclusion list.</param>
+            <returns>Modified destination instance.</returns>
+        </member>
+        <member name="M:Vault.Core.ReflectionExtensions.ReflectEachTo``1(System.Collections.IEnumerable)">
+            <summary>
+            Reflects elements of IEnumerable collection to generic IEnumerable collection.
+            </summary>
+            <typeparam name="TModel">Type of class in generic IEnumerable collection.</typeparam>
+            <param name="collection">Source IEnumerable collection.</param>
+            <returns>Generic IEnumerable collection.</returns>
+        </member>
+        <member name="T:Vault.Core.SkipReflectAttribute">
+            <summary>
+            Used to annotate property to be skipped when using ReflectTo.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.ConflictException">
+            <summary>
+            Throw this exception when rules of business logic have prevented process to complete.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.ConflictException.SubCode">
+            <summary>
+            SubCode that can be traced back to code that has thrown the exception.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.PropertyValidationException">
+            <summary>
+            Throw this exception when you want to return property error as tooltip on UI.
+            </summary>
+            <example>
+            E-mail address is in use, but query must be made from the repository before statement has been made.
+            </example>
+        </member>
+        <member name="T:Vault.Core.VaultSecurityException">
+            <summary>
+            Indicates that parameter tampering has been made in order to make intrusion in system consistency.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultSecurityException.MethodName">
+            <summary>
+            Name of the method where intrusion was detected.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultSecurityException.IdentityId">
+            <summary>
+            Identifier of the identity within security context.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultSecurityException.IdentityUserName">
+            <summary>
+            Email-address of the identity within security context.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultSecurityException.RequestQueryString">
+            <summary>
+            Query string of the request.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultSecurityException.RequestBody">
+            <summary>
+            Body of the request. Logged only if content type is json or form-urlencoded and body contents do not exceed 1024 kB.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.WellKnownRegex">
+            <summary>
+            Collection of well-known regular expressions.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.WellKnownRegex.EmailAddress">
+            <summary>
+            E-mail address regex.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.WellKnownRegex.DecimalNumber">
+            <summary>
+            Decimal number regex.
+            </summary>
+        </member>
+        <member name="F:Vault.Core.WellKnownRegex.Number">
+            <summary>
+            Whole number regex.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.VaultClaimTypes">
+            <summary>
+            Set of frequently used claim types.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.DropDownListItem`1">
+            <summary>
+            Base class for DropDownList collection item.
+            </summary>
+            <typeparam name="T">Identifier type.</typeparam>
+        </member>
+        <member name="P:Vault.Core.DropDownListItem`1.Id">
+            <summary>
+            Item identifier.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.DropDownListItem`1.Name">
+            <summary>
+            Item display name.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.ExceptionStackInfo">
+            <summary>
+            Extended information about Exception object.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.ManagedException">
+            <summary>
+            Wrapper arround base Exception class to incidate that Exception has been generated by business logic and should be treated as managed.
+            ManagedException is logged during constructor.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.VaultExceptionResource">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultExceptionResource.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultExceptionResource.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultExceptionResource.ConfigSectionMissing">
+            <summary>
+              Looks up a localized string similar to Vault configuration section is missing..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultExceptionResource.SeederMismatch">
+            <summary>
+              Looks up a localized string similar to There is a seeder mismatch during migration..
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultExceptionResource.SqlInjectionAttempt">
+            <summary>
+              Looks up a localized string similar to Malformed search query has been generated..
+            </summary>
+        </member>
+        <member name="M:Vault.Core.NLogExceptionLoggingStrategy.LogUnmanaged(System.Exception)">
+            <summary>
+            This method will log full stack trace information about exception with log level of ERROR.
+            Use this method to log all unpredicted exceptions generated by code faults.
+            </summary>
+            <param name="exception">Exception to log.</param>
+        </member>
+        <member name="M:Vault.Core.NLogExceptionLoggingStrategy.LogManaged(Vault.Core.ManagedException)">
+            <summary>
+            This method will log only exception message by using log level of ERROR.
+            Use this to log managed exceptions thrown intentionally by your business logic.
+            </summary>
+            <param name="exception">Exception to log.</param>
+        </member>
+        <member name="M:Vault.Core.NLogExceptionLoggingStrategy.LogSecurity(System.Security.SecurityException)">
+            <summary>
+            This method will log only the Url, Message and contents of Data dictionary which should contain security context information under which exception was thrown.
+            </summary>
+            <param name="exception">Security exception to log.</param>
+        </member>
+        <member name="M:Vault.Core.NLogExceptionLoggingStrategy.LogCritical(System.Exception)">
+            <summary>
+            This method will log full exception stack info in separate, critical LOG file with log level of FATAL.
+            Use this to log exceptions that you expect to happen when some critical part of framework is not set up properly.
+            </summary>
+            <param name="exception">Exception to log.</param>
+        </member>
+        <member name="M:Vault.Core.NLogExceptionLoggingStrategy.LogWarning(System.String)">
+            <summary>
+            This method will log warning in critical LOG file.
+            Use this to emit some warning that indicates some application setup inconsistency which should not stop application from further processing.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Vault.Core.VaultIdentityProxy">
+            <summary>
+            Disclaimer: Do not use this in load-balancing scenarios. Opt for STS-based solution.
+            </summary>
+        </member>
+        <member name="T:Vault.Core.VaultSessionWrapper">
+            <summary>
+            Wrapper arround Session state to provide strongly typed access to values.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.VaultSessionWrapper.TryGetStructEntry``1(System.String,``0)">
+            <summary>
+            Attempts to return session entry value. Otherwise returns default value.
+            </summary>
+            <param name="key">Session entry key.</param>
+            <param name="defaultValue">Default value if session entry is unavailable.</param>
+            <returns>Session entry value or default value if unavailable.</returns>
+        </member>
+        <member name="M:Vault.Core.VaultSessionWrapper.TryGetStructEntryOrNull``1(System.String)">
+            <summary>
+            Attempts to return session entry value. If not possible, returns null.
+            </summary>
+            <typeparam name="T">Type to cast the value to.</typeparam>
+            <param name="key">Key to look the value for.</param>
+            <returns>Null or value.</returns>
+        </member>
+        <member name="M:Vault.Core.VaultSessionWrapper.TryGetClassEntry``1(System.String,``0)">
+            <summary>
+            Attempts to return session entry value as typed object. Otherwise returns default value.
+            </summary>
+            <typeparam name="T">Type to cast the value to.</typeparam>
+            <param name="key">Session entry key.</param>
+            <param name="defaultValue">Default value if session entry is unavailable.</param>
+            <returns>Session entry value or default value if unavailable.</returns>
+        </member>
+        <member name="M:Vault.Core.VaultSessionWrapper.TrySetSessionEntry``1(System.String,``0)">
+            <summary>
+            Attempts to set session entry value if session is available.
+            </summary>
+            <param name="key">Session entry key.</param>
+            <param name="value">Value to be set.</param>
+            <returns>True if success.</returns>
+        </member>
+        <member name="M:Vault.Core.VaultSessionWrapper.TryRemoveSessionEntry(System.String)">
+            <summary>
+            Attempts to remove session entry.
+            </summary>
+            <param name="key">Session entry key.</param>
+            <returns>True if success.</returns>
+        </member>
+        <member name="P:Vault.Core.VaultSessionWrapper.IETFTag">
+            <summary>
+            Session entry for key IETFTag.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultSessionWrapper.TranslationMode">
+            <summary>
+            Session entry for key TranslationMode.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.VaultSessionWrapper.IdentityId">
+            <summary>
+            Session entry for key IdentityId.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.TempFolder.SaveFileAsync(System.Byte[],System.String,System.String,System.String)">
+            <summary>
+            Creates Temporary file in specified TEMP folder subFolder.
+            </summary>
+            <param name="content">File content.</param>
+            <param name="contentType">File content type given as well known mime type.</param>
+            <param name="fileName">Original name of the file.</param>
+            <param name="subFolder">Name of the subFolder to be used. If omitted, file will be saved in root of TEMP folder.</param>
+            <returns>Temp file wrapper instance.</returns>
+        </member>
+        <member name="M:Vault.Core.TempFolder.GetFilePath(System.IO.DirectoryInfo,System.String)">
+            <summary>
+            Creates full absolute path based on directory and provided fileName.
+            </summary>
+            <param name="di">Directory information.</param>
+            <param name="fileName">Name of the file.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Vault.Core.TempFolder.GetFileAsync(System.String,System.String)">
+            <summary>
+            Returns TEMP file with given name placed within specified subFolder.
+            </summary>
+            <param name="tempFileName">Name of the TEMP file.</param>
+            <param name="subFolder">SubFolder where file is located.</param>
+            <returns>Wrapper for specified TEMP file.</returns>
+        </member>
+        <member name="M:Vault.Core.TempFolder.Exists(System.String,System.String)">
+            <summary>
+            Checks whether the file with specified fileName exists in subFolder of TEMP folder.
+            </summary>
+            <param name="fileName">Name of the file to look for.</param>
+            <param name="subFolder">SubFolder to check in.</param>
+            <returns>True if file was found.</returns>
+        </member>
+        <member name="M:Vault.Core.TempFolder.GetReadFileStream(System.String,System.String)">
+            <summary>
+            Opens file with specified file name for reading.
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="subFolder">Subfolder.</param>
+            <returns>Open FileStream.</returns>
+        </member>
+        <member name="M:Vault.Core.TempFolder.GetWriteFileStream(System.String,System.String)">
+            <summary>
+            Creates file with specified file name for writing.
+            </summary>
+            <param name="fileName">File name.</param>
+            <param name="subFolder">Subfolder.</param>
+            <returns>Write FileStream.</returns>
+        </member>
+        <member name="M:Vault.Core.AttributeExtensions.HasAttribute``1(System.Reflection.MemberInfo)">
+            <summary>
+            Checks whether specified class type is decorated with attribute of type T.
+            </summary>
+            <typeparam name="T">Type of attribute.</typeparam>
+            <param name="element">Class type.</param>
+            <returns>True if attribute was found.</returns>
+        </member>
+        <member name="M:Vault.Core.AttributeExtensions.GetAttributes(System.Reflection.MemberInfo)">
+            <summary>
+            Returns all attributes that are decorated on specified class type.
+            </summary>
+            <param name="type">Class type.</param>
+            <returns>Attribute instances.</returns>
+        </member>
+        <member name="M:Vault.Core.AttributeExtensions.GetAttributeNames(System.Reflection.MemberInfo)">
+            <summary>
+            Returns names for all attributes that are decorated on specified class type.
+            </summary>
+            <param name="element">Class type.</param>
+            <returns>Names of all attributes.</returns>
+        </member>
+        <member name="T:Vault.Core.ByteArrayExtensions">
+            <summary>
+            Provides extension methods to byte arrays.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.ByteArrayExtensions.ResizeContent(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Resizes content of image to provided width and height.
+            </summary>
+            <param name="content">Image content.</param>
+            <param name="width">New width.</param>
+            <param name="height">New height.</param>
+            <returns>Resized content.</returns>
+        </member>
+        <member name="M:Vault.Core.ByteArrayExtensions.AsBase64StringContent(System.Byte[],System.String)">
+            <summary>
+            Converts image content to Base64 string content.
+            </summary>
+            <param name="content">Image content.</param>
+            <param name="contentType">Content type.</param>
+            <returns>Base64 string content.</returns>
+        </member>
+        <member name="T:Vault.Core.ClaimsIdentityExtensions">
+            <summary>
+            Provides set of extension methods for ClaimsIdentity class.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.ClaimsIdentityExtensions.AddClaim(System.Security.Claims.ClaimsIdentity,System.String,System.String)">
+            <summary>
+            Adds new Claim to ClaimsIdentity instance.
+            </summary>
+            <param name="identity">ClaimsIdentity instance.</param>
+            <param name="claimType">Claim type.</param>
+            <param name="claimValue">Claim value.</param>
+            <returns>Claim instance.</returns>
+        </member>
+        <member name="M:Vault.Core.ClaimsPrincipalExtensions.FindFirstOrDefault(System.Security.Claims.ClaimsPrincipal,System.String)">
+            <summary>
+            Returns value of first found claim based on provided type, or null if not found.
+            </summary>
+            <param name="principal">Provided principal that contains claims collection to query against.</param>
+            <param name="type">Type of claim to query.</param>
+            <returns>Claim value.</returns>
+        </member>
+        <member name="M:Vault.Core.ClaimsPrincipalExtensions.HasBoolClaim(System.Security.Claims.ClaimsPrincipal,System.String,System.Boolean)">
+            <summary>
+            Checks whether the principal has value of claim set to boolean value.
+            </summary>
+            <param name="principal">ClaimsPrincipal instance.</param>
+            <param name="type">Type of claim.</param>
+            <param name="value">Value to be expected.</param>
+            <returns>Indication whether claim has the required value.</returns>
+        </member>
+        <member name="M:Vault.Core.ClaimsPrincipalExtensions.CanAccess(System.Security.Claims.ClaimsPrincipal,System.String,System.String)">
+            <summary>
+            Checks whether principal is authorized to perform action on the resource.
+            </summary>
+            <param name="principal">ClaimsPrincipal instance.</param>
+            <param name="resource">Resource name.</param>
+            <param name="action">Action name.</param>
+            <returns>Indication whether action on the resource is allowed.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.FromUtc(System.DateTime)">
+            <summary>
+            Converts UTC DateTime to local TimeZone.
+            </summary>
+            <param name="utcDate">DateTime object with DateTimeKind.Utc kind.</param>
+            <returns>DateTime object with DateTimeKind.Local kind.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.FromUtc(System.DateTime,System.String)">
+            <summary>
+            Converts UTC date to specified TimeZone date.
+            </summary>
+            <param name="utcDate">DateTime object with DateTimeKind.Utc kind.</param>
+            <param name="timeZoneId">Identifier of TimeZone.</param>
+            <returns>DateTime object with DateTimeKind.Local kind.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.ToUtc(System.DateTime)">
+            <summary>
+            Converts date in specified TimeZone to UTC date.
+            </summary>
+            <param name="date">DateTime object with DateTimeKind.Local kind.</param>
+            <returns>DateTime object with DateTimeKind.Utc kind.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.ToUtc(System.DateTime,System.String)">
+            <summary>
+            Converts date in specified TimeZone to UTC date.
+            </summary>
+            <param name="date">Date in specified TimeZone.</param>
+            <param name="timeZoneId">Identifier of TimeZone.</param>
+            <returns>Date in UTC.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.DayStart(System.DateTime)">
+            <summary>
+            Returns start of day with time 00:00:00.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>Provided DateTime with time 00:00:00.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.DayEnd(System.DateTime)">
+            <summary>
+            Returns end of day with time 23:59:59.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>Provided DateTime with time 23:59:59.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.Week(System.DateTime,System.Globalization.CalendarWeekRule)">
+            <summary>
+            Returns week of the year for specified date.
+            </summary>
+            <param name="date">DateTime instance.</param>
+            <param name="rule">Week rule. If not provided, default value is used (CalendarWeekRule.FirstDay).</param>
+            <returns>Week of the year.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.AddWeeks(System.DateTime,System.Int32)">
+            <summary>
+            Adds/subtracts weeks to provided DateTime instance. Both negative and positive values are valid.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <param name="weeks">Number of weeks to add/substract.</param>
+            <returns>DateTime instance with weeks added/subtracted.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.WeekStart(System.DateTime)">
+            <summary>
+            Returns first day of week for provided DateTime instance, with time set to 00:00:00.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>First day of week with 00:00:00 time.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.WeekEnd(System.DateTime)">
+            <summary>
+            Returns last day of week for provided DateTime instance, with time set to 23:59:59.
+            </summary>
+            <param name="dateTime">Datetime instance.</param>
+            <returns>Last day of week with 23:59:59 time.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.MonthStart(System.DateTime)">
+            <summary>
+            Returns first day of the month with time set to 00:00:00.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>First day of the month with time set to 00:00:00.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.MonthEnd(System.DateTime)">
+            <summary>
+            Returns last day of the month with time set to 23:59:59.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>Last day of the month with time set to 23:59:59.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.Quarter(System.DateTime)">
+            <summary>
+            Returns quarter of the year for specified date.
+            </summary>
+            <param name="date">DateTime instance.</param>
+            <returns>Querter of the year. Values range from 1 - 4.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.AddQuarters(System.DateTime,System.Int32)">
+            <summary>
+            Adds/subtracts quarters to provided DateTime instance. Both negative and positive values are valid.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <param name="quarters">Number of quarters to add/subtract.</param>
+            <returns>DateTime instance with quarters added/subtracted.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.QuarterStart(System.DateTime)">
+            <summary>
+            Returns first day of quarter with time set to 00:00:00.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>First day of quarter with time set to 00:00:00.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.QuarterEnd(System.DateTime)">
+            <summary>
+            Returns last day of quarter with time set to 23:59:59.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>Last day of quarter with time set to 23:59:59.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.YearStart(System.DateTime)">
+            <summary>
+            Returns first day of year with time 00:00:00.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>First day of year with time 00:00:00.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.YearEnd(System.DateTime)">
+            <summary>
+            Returns last day of year with time 23:59:59.
+            </summary>
+            <param name="dateTime">DateTime instance.</param>
+            <returns>Last day of year with time 23:59:59.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.DaysUntil(System.DateTime,System.DateTime,System.Boolean,System.Boolean)">
+            <summary>
+            Returns collection of DateTime objects between two specified interval dates.
+            </summary>
+            <param name="intervalStartDate">Start of interval.</param>
+            <param name="intervalEndDate">End of interval.</param>
+            <param name="includeStart">Should starting date be included in response.</param>
+            <param name="includeEnd">Should ending date be included in response.</param>
+            <returns>Collection of days.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.LS(System.DateTime)">
+            <summary>
+            Creates string representation of date in short date format, based on current thread UI culture.
+            </summary>
+            <param name="date">Datetime to convert.</param>
+            <returns>Converted string representation.</returns>
+        </member>
+        <member name="M:Vault.Core.DateTimeExtensions.L(System.DateTime)">
+            <summary>
+            Creates string representation of date and time, based on current thread UI culture.
+            </summary>
+            <param name="date">Datetime to convert.</param>
+            <returns>Converted string representation.</returns>
+        </member>
+        <member name="M:Vault.Core.EnumExtensions.L(System.Enum)">
+            <summary>
+            Returns name of the enum based on localized resource for current thread culture.
+            </summary>
+            <param name="en">Value of enum for which name should be localized.</param>
+            <returns>Localized name of enum.</returns>
+        </member>
+        <member name="M:Vault.Core.EnumExtensions.L(System.Enum,System.String)">
+            <summary>
+            Returns name of the enum based on specified culture.
+            </summary>
+            <param name="en">Value of enum for which name should be localized.</param>
+            <param name="ietfTag">IETF tag of culture.</param>
+            <returns>Localized name of enum.</returns>
+        </member>
+        <member name="M:Vault.Core.EnumExtensions.GetAttribute``1(System.Enum)">
+            <summary>
+            Returns instance of an attribute of type T placed on enum value.
+            </summary>
+            <typeparam name="T">Attribute type.</typeparam>
+            <param name="en">Enum value.</param>
+            <returns>Attribute instance or null.</returns>
+        </member>
+        <member name="M:Vault.Core.EnumExtensions.GetName(System.Enum)">
+            <summary>
+            Returns name of the enum value.
+            </summary>
+            <param name="en">Enum value.</param>
+            <returns>Name of the enum value.</returns>
+        </member>
+        <member name="M:Vault.Core.EnumExtensions.GetValues``1">
+            <summary>
+            Gets collection of enumeration values.
+            </summary>
+            <typeparam name="TEnum">Enumeration type.</typeparam>
+            <returns>Collection of enum values.</returns>
+        </member>
+        <member name="M:Vault.Core.EnumExtensions.Arrange``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Orders enum values by EnumOrderAttribute.
+            </summary>
+            <typeparam name="TEnum">Enum type.</typeparam>
+            <param name="values">Enum values.</param>
+            <returns>Ordered values.</returns>
+        </member>
+        <member name="M:Vault.Core.EnumExtensions.Split``1(``0)">
+            <summary>
+            Converts Flags enum value to collection of enum flags.
+            </summary>
+            <typeparam name="TEnum">Enum type.</typeparam>
+            <param name="en">Enum instance.</param>
+            <returns>Collection of flags.</returns>
+        </member>
+        <member name="M:Vault.Core.ExceptionExtensions.RecursiveMessage(System.Exception)">
+            <summary>
+            Creates recursive message from all inner exceptions.
+            </summary>
+            <param name="exception">Exception on top of the stack.</param>
+            <returns>Recursive message</returns>
+        </member>
+        <member name="M:Vault.Core.ExceptionExtensions.StackInfo(System.Exception)">
+            <summary>
+            Returns extended information about exception instance that can be serialized / persisted safely.
+            </summary>
+            <param name="exception">Exception object.</param>
+            <returns>Extended information.</returns>
+        </member>
+        <member name="M:Vault.Core.IEnumerableExtensions.ContainsAny``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Determines whether the set contains any of the elements in the subset.
+            </summary>
+            <typeparam name="TElement">Type of element.</typeparam>
+            <param name="set">Set of elements of type T.</param>
+            <param name="subset">Subset of elements of type T.</param>
+            <returns>Intersection result.</returns>
+        </member>
+        <member name="M:Vault.Core.IEnumerableExtensions.ContainsAll``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Determines whether the set contains all of the elements in the subset.
+            </summary>
+            <typeparam name="TElement">Type of element.</typeparam>
+            <param name="set">Set of elements of type T.</param>
+            <param name="subset">Subset of elements of type T.</param>
+            <returns>Intersection result.</returns>
+        </member>
+        <member name="M:Vault.Core.IEnumerableExtensions.HasElements``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Checks whether collection of elements is null or empty.
+            </summary>
+            <typeparam name="TElement">Type of elements in collection.</typeparam>
+            <param name="collection">Collection instance.</param>
+            <returns>True if collection is not empty.</returns>
+        </member>
+        <member name="M:Vault.Core.IEnumerableExtensions.HasDuplicates``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Checkes whether collection of elements of type TElement contains duplicates.
+            </summary>
+            <typeparam name="TElement">Type of element.</typeparam>
+            <param name="collection">Collection of elements.</param>
+            <returns>True if duplicates are found. Otherwise false.</returns>
+        </member>
+        <member name="M:Vault.Core.IEnumerableExtensions.SymmetricDifference``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Procuduces set of elements that are not present in either of the collections.
+            </summary>
+            <typeparam name="T">Type of element in collection.</typeparam>
+            <param name="primary">Primary collection.</param>
+            <param name="secondary">Secondary collection.</param>
+            <returns>Symmetric difference between two collections.</returns>
+        </member>
+        <member name="M:Vault.Core.ListExtensions.RemoveLast``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Removes last member of List.
+            </summary>
+            <typeparam name="T">Type of list.</typeparam>
+            <param name="list">Provided list.</param>
+            <returns>Reduced list.</returns>
+        </member>
+        <member name="M:Vault.Core.NumericExtensions.IsInRange(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Validates if value is within specified range of values.
+            </summary>
+            <param name="value">Value to validate.</param>
+            <param name="min">Range minimum value.</param>
+            <param name="max">Range maximum value.</param>
+            <returns>Result of validation</returns>
+        </member>
+        <member name="M:Vault.Core.NumericExtensions.CeilingDivide(System.Int32,System.Int32)">
+            <summary>
+            Divides value with divisor and returns result rounded to smallest integer greater or equal than result.
+            </summary>
+            <param name="value">Value to divide.</param>
+            <param name="divisor">Divisor.</param>
+            <returns>Result of operation.</returns>
+        </member>
+        <member name="M:Vault.Core.NumericExtensions.FloorDivide(System.Int32,System.Int32)">
+            <summary>
+            Divides value with divisor and returns result rounded to largest integer lesser or equal than result.
+            </summary>
+            <param name="value">Value to divide.</param>
+            <param name="divisor">Divisor.</param>
+            <returns>Result of operation.</returns>
+        </member>
+        <member name="M:Vault.Core.NumericExtensions.NullIfZero(System.Nullable{System.Int32})">
+            <summary>
+            Converts integer to null if value is 0.
+            </summary>
+            <param name="value">Integer value.</param>
+            <returns>Null if 0, otherwise original value.</returns>
+        </member>
+        <member name="T:Vault.Core.StreamExtensions">
+            <summary>
+            Provides extension methods for Stream class.
+            </summary>
+        </member>
+        <member name="M:Vault.Core.StreamExtensions.ToByteArray(System.IO.Stream)">
+            <summary>
+            Returns array of bytes contained by the input stream.
+            </summary>
+            <param name="input">Input stream.</param>
+            <returns>Array of bytes.</returns>
+        </member>
+        <member name="M:Vault.Core.StreamExtensions.ResizeContent(System.IO.Stream,System.Int32,System.Int32)">
+            <summary>
+            Resizes contents of input stream to specified width and height.
+            </summary>
+            <param name="inputStream">Input stream (must be an image stream).</param>
+            <param name="width">New width.</param>
+            <param name="height">New height.</param>
+            <returns>Content of resized image.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.ToEnum``1(System.String)">
+            <summary>
+            Converts string value to strongly typed enumeration member.
+            </summary>
+            <typeparam name="T">Type of enumeration.</typeparam>
+            <param name="value">String value to convert.</param>
+            <returns>Member of enumeration.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.ToBool(System.String)">
+            <summary>
+            Converts string to boolean value.
+            </summary>
+            <param name="value">String value.</param>
+            <returns>Bool value.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.WithParams(System.String,System.Object[])">
+            <summary>
+            Attempts to replace placeholders in string with provided list of parameters.
+            </summary>
+            <param name="value">Input string with placeholders.</param>
+            <param name="parameters">Parameters to replace placeholders.</param>
+            <returns>Formatted string or original string.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.WithParams(System.String,System.String[])">
+            <summary>
+            Attempts to replace placeholders in string with provided list of parameters.
+            </summary>
+            <param name="value">Input string with placeholders.</param>
+            <param name="parameters">Parameters to replace placeholders.</param>
+            <returns>Formatted string or original string.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.Truncate(System.String,System.Int32)">
+            <summary>
+            Truncates string value to fixed lenght
+            </summary>
+            <param name="value">String value to truncate.</param>
+            <param name="maxLength">Maximum length.</param>
+            <returns>Truncated string.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.ParseRouteData(System.String)">
+            <summary>
+            Returns route segments for specified URL.
+            </summary>
+            <param name="url">URL to parse.</param>
+            <returns>Route segments.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.ConvertSpacing(System.String,System.Char)">
+            <summary>
+            Trims string, removes duplicate white spaces and replaces remaining white spaces with replacement char.
+            </summary>
+            <param name="input">Input string.</param>
+            <param name="replacement">Replacement character.</param>
+            <returns>Output string.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.TrimInner(System.String)">
+            <summary>
+            Trims input string, and replaces all neighbouring spaces.
+            </summary>
+            <param name="input">Input string.</param>
+            <returns>Trimmed string.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.Reverse(System.String)">
+            <summary>
+            Reverses order of characters in string.
+            WARNING! This might interrupt encoding.
+            </summary>
+            <param name="value">Original value.</param>
+            <returns>Reversed value.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.DefaultIfEmpty(System.String,System.String)">
+            <summary>
+            Provides default value if input string is null, empty or white space.
+            </summary>
+            <param name="input">Input string.</param>
+            <param name="defaultValue">Default value.</param>
+            <returns>Original string or default value.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.ToTitleCase(System.String)">
+            <summary>
+            Returns formatted string to title cased, based on executing thread UI culture.
+            </summary>
+            <param name="input">Input string.</param>
+            <returns>Formatted string.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.ParseHex(System.String)">
+            <summary>
+            Parses HEX string to array of bytes.
+            </summary>
+            <param name="input">HEX string.</param>
+            <returns>Parsed array of bytes.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.IsInt(System.String)">
+            <summary>
+            Checks whether provided string input is a valid integer value.
+            </summary>
+            <param name="input">Input string.</param>
+            <returns>True if input is valid Integer.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.IsGuid(System.String)">
+            <summary>
+            Checks whether provided string input is valid GUID.
+            </summary>
+            <param name="input">Input string.</param>
+            <returns>True if input is valid GUID.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.IsEmpty(System.String)">
+            <summary>
+            Checks whether input string is null or empty or white space.
+            </summary>
+            <param name="input">Input string.</param>
+            <returns>True if string is null or empty or white space.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.Split(System.String,System.Char)">
+            <summary>
+            Splits input string to segments by using separator.
+            </summary>
+            <param name="input">Input string.</param>
+            <param name="separator">Separator.</param>
+            <returns>String segments.</returns>
+        </member>
+        <member name="M:Vault.Core.StringExtensions.ParseNybble(System.Char)">
+            <summary>
+            Converts HEX character(0-A) to 0-16 integer value.
+            Courtesy of Jon Skeet.
+            </summary>
+            <param name="c">Nybble to parse.</param>
+            <returns>Matching integer value.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.HasProperty``1(``0,System.String)">
+            <summary>
+            Checkes whether the specified TClass type has property with given name.
+            </summary>
+            <typeparam name="TClass">Type of instance.</typeparam>
+            <param name="instance">TClass instance.</param>
+            <param name="propertyName">Name of the property to check.</param>
+            <returns>True if property is present. Otherwise false.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetPropertyNames``1(``0)">
+            <summary>
+            Returns names of all properties for TClass type.
+            </summary>
+            <typeparam name="TClass">Type of class.</typeparam>
+            <param name="instance">TClass instance.</param>
+            <returns>Collection of TClass names.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetPrivateMethod(System.Type,System.String)">
+            <summary>
+            Retrieves metadata for a private method.
+            </summary>
+            <param name="type">Type of the object that owns the method.</param>
+            <param name="methodName">Name of the method.</param>
+            <returns>Method metadata.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetPropertyInfo``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Returns PropertyInfo class instance for property specified in lambda expression.
+            </summary>
+            <typeparam name="TModel">Model class type.</typeparam>
+            <typeparam name="TProperty">Property class type.</typeparam>
+            <param name="propertySelector">Lambda expression property specifier.</param>
+            <returns>PropertyInfo instance.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetPropertyName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Boolean)">
+            <summary>
+            Returns name of the property specified with propertySelector lambda expression.
+            </summary>
+            <typeparam name="TClass">Class type.</typeparam>
+            <typeparam name="TProperty">Property type.</typeparam>
+            <param name="propertySelector">Property selector exprsesion.</param>
+            <param name="lowerCamelCase">Indicates whether lower camel casing should be used.</param>
+            <returns>Property name.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetPropertyDisplayName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Returns display name for property based on DisplayNameAttribute.
+            </summary>
+            <typeparam name="TModel">Model type.</typeparam>
+            <typeparam name="TProperty">Property type.</typeparam>
+            <param name="propertySelector">Propery selector expression.</param>
+            <returns>Display name for property.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetNameFor``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Returns name of the property specified with propertySelector.
+            </summary>
+            <typeparam name="TModel">Type of model.</typeparam>
+            <typeparam name="TProperty">Type of property.</typeparam>
+            <param name="model">Model class instance.</param>
+            <param name="propertySelector">Property selector expression.</param>
+            <returns>Name of the property.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetDisplayNameFor``2(``0,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Returns display name of the property specified with propertySelector.
+            </summary>
+            <typeparam name="TModel">Type of model class.</typeparam>
+            <typeparam name="TProperty">Type of property.</typeparam>
+            <param name="model">Model class instance.</param>
+            <param name="propertySelector">Property selector expression.</param>
+            <returns>Display name of the property.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.GetPropertyValueFrom``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},``0)">
+            <summary>
+            Returns value of property for specified model or default(TProperty) if model is null.
+            </summary>
+            <typeparam name="TModel">Type of model.</typeparam>
+            <typeparam name="TProperty">Type of property.</typeparam>
+            <param name="propertySelector">Property selector expression.</param>
+            <param name="model">Model class instance.</param>
+            <returns>Value of property or default(TProperty) if model is null.</returns>
+        </member>
+        <member name="M:Vault.Core.TypeExtensions.IsNullable(System.Type)">
+            <summary>
+            Checks whether provided class type is of Nullable type.
+            </summary>
+            <param name="type">Class type.</param>
+            <returns>True if it is nullable.</returns>
+        </member>
+        <member name="M:Vault.Core.UriExtensions.FullHostAddress(System.Uri)">
+            <summary>
+            Resolves full host address by removing relative parts.
+            </summary>
+            <param name="uri">URI to resolve from.</param>
+            <returns>Full host address.</returns>
+        </member>
+        <member name="T:Vault.Core.PropertyValidationError">
+            <summary>
+            DTO class to hold information about property validation error.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.PropertyValidationError.PropertyName">
+            <summary>
+            Name of the property where the validation error has occured.
+            </summary>
+        </member>
+        <member name="P:Vault.Core.PropertyValidationError.ErrorMessage">
+            <summary>
+            Validation error message.
+            </summary>
+        </member>
+    </members>
+</doc>

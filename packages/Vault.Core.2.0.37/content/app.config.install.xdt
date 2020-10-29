@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
+  <configSections xdt:Transform="InsertIfMissing">
+    <section name="vault" type="Vault.Core.VaultConfig, Vault.Core"
+             xdt:Transform="InsertIfMissing"
+             xdt:Locator="Match(name)"/>
+  </configSections>
+  <vault xdt:Transform="InsertIfMissing"
+         useUTC="false"
+         errorRedirectRoute="/Home/Error"
+         unauthorizedRedirectRoute="/Home/Index"
+         notFoundRedirectRoute="/Home/NotFound"
+         tempFolder="C:\AppTemp"
+         >
+  </vault>
+</configuration>

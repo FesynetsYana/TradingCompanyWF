@@ -1,0 +1,365 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vault.DAL</name>
+    </assembly>
+    <members>
+        <member name="T:Vault.DAL.ExceptionAdapters">
+            <summary>
+            Adapters of EF specific exceptions to well known exception types.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.ExceptionAdapters.AsPropertyValidationException(System.Data.Entity.Validation.DbEntityValidationException)">
+            <summary>
+            Converts DB validation exception to PropertyValidationException.
+            </summary>
+            <param name="dbException">Db validation exception.</param>
+            <returns>PropertyValidationException instance.</returns>
+        </member>
+        <member name="T:Vault.DAL.ChainType">
+            <summary>
+            Indicates type of WHERE clause expression chaining.
+            </summary>
+        </member>
+        <member name="F:Vault.DAL.ChainType.AND">
+            <summary>
+            Chain all WHERE clauses with AND operator.
+            </summary>
+        </member>
+        <member name="F:Vault.DAL.ChainType.OR">
+            <summary>
+            Chain all WHERE clauses with OR operator.
+            </summary>
+        </member>
+        <member name="T:Vault.DAL.DbContextExtensions">
+            <summary>
+            Extension methods for DbContext.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.DbContextExtensions.DeleteByIdAsync``2(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Data.Entity.IDbSet{``1}}},System.Int32[])">
+            <summary>
+            Deletes set of entities from table T in DbContext D based on provided list of keys.
+            Requires primary key column Id of type integer.
+            </summary>
+            <typeparam name="D">Type of DbContext derived class</typeparam>
+            <typeparam name="T">Type of table class.</typeparam>
+            <param name="ctx">DbContext instance.</param>
+            <param name="tableSelector">DbSet selector.</param>
+            <param name="keys">List of primary keys to use in query.</param>
+            <returns>Number of deleted records.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbContextExtensions.UpdateLinks``1(Vault.DAL.VaultDbContext,System.Collections.Generic.IEnumerable{System.Int32},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Func{System.Int32,``0},System.Func{System.Int32,``0,System.Boolean})">
+            <summary>
+            Updates set of entity links.
+            </summary>
+            <typeparam name="TEntityLink">Type of entity link class.</typeparam>
+            <param name="context">DbContext instance.</param>
+            <param name="ids">List of right entity foreign keys to be used for links.</param>
+            <param name="condition">Condition under which current links will be queried.</param>
+            <param name="linkBuilder">Delegate that creates new link with right entity id.</param>
+            <param name="linkComparer">Delegate that compares link foreign key with right entity id.</param>
+            <returns>Task to wait.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbContextExtensions.StubDeleteEntity``1(System.Data.Entity.DbContext,System.Int32)">
+            <summary>
+            Attempts to use already tracked TEntity instance or creates stub TEntity instance and marks it for deletion.
+            </summary>
+            <typeparam name="TEntity">Entity type.</typeparam>
+            <param name="context">DbContext instance.</param>
+            <param name="id">Primary key of TEntity instance.</param>
+            <returns>TEntity instance.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbContextExtensions.CreateEntity``1(System.Data.Entity.DbContext,System.Object)">
+            <summary>
+            Creates instance of TEntity, applies values from DTO, and adds it to change tracker.
+            </summary>
+            <typeparam name="TEntity">Entity type.</typeparam>
+            <param name="context">DbContext instance.</param>
+            <param name="dto">DTO with values to be set on TEntity instance.</param>
+            <returns>Newly created TEntity instance.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbContextExtensions.GetTableName``1(Vault.DAL.VaultDbContext)">
+            <summary>
+            Returns name of the table.
+            </summary>
+            <typeparam name="TEntity">Entity class type.</typeparam>
+            <param name="context">DbContext instance.</param>
+            <returns>Name of the table for specified Entity class.</returns>
+        </member>
+        <member name="T:Vault.DAL.DbContextTransactionExtensions">
+            <summary>
+            Extension methods for DbContextTransaction class.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.DbContextTransactionExtensions.TryCommit(System.Data.Entity.DbContextTransaction)">
+            <summary>
+            Attempt to commit transaction. Rollback and throw if commit fails.
+            </summary>
+            <param name="transaction">Transaction to commit.</param>
+        </member>
+        <member name="T:Vault.DAL.AddFileStreamColumnMigrationOperation">
+            <summary>
+            Migration class for adding FileStream column to table.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.AddFileStreamColumnMigrationOperation.#ctor(System.String)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="tableName">Name of the table.</param>
+        </member>
+        <member name="P:Vault.DAL.AddFileStreamColumnMigrationOperation.TableName">
+            <summary>
+            Name of the table.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.DbContextFileStreamExtensions.WriteToFileStreamAsync``1(Vault.DAL.VaultDbContext,``0)">
+            <summary>
+            Writes binary data from TEntity class instance to FileStream.
+            </summary>
+            <typeparam name="TEntity">Entity class type.</typeparam>
+            <param name="context">DbContext instance.</param>
+            <param name="entity">Entity class instance.</param>
+            <returns>Entity class instance.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbContextFileStreamExtensions.ReadFromFileStreamAsync``1(Vault.DAL.VaultDbContext,``0)">
+            <summary>
+            Reads binary data from FileStraem into TEntity class instance data.
+            </summary>
+            <typeparam name="TEntity">Entity class type.</typeparam>
+            <param name="context">DbContext instance.</param>
+            <param name="entity">Entity class instance.</param>
+            <returns>Entity class instance with read Data.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbContextFileStreamExtensions.CopyFromFileStreamAsync``1(Vault.DAL.VaultDbContext,``0)">
+            <summary>
+            Reads stream data from SQL FileStream into Stream property of TEntity class instance.
+            </summary>
+            <typeparam name="TEntity">Entity type.</typeparam>
+            <param name="context">Database context.</param>
+            <param name="entity">Entity.</param>
+            <returns>Entity.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbContextFileStreamExtensions.CopyToFileStreamAsync``1(Vault.DAL.VaultDbContext,``0)">
+            <summary>
+            Copies stream data from TEntity class instance to SQL FileStream.
+            </summary>
+            <typeparam name="TEntity">Entity type.</typeparam>
+            <param name="context">Database context.</param>
+            <param name="entity">Entity.</param>
+            <returns>Entity</returns>
+        </member>
+        <member name="M:Vault.DAL.EntityExtensions.EnsureNotNull``1(``0,System.Object)">
+            <summary>
+            Validates if object is null => throws EntityNotFoundException.
+            </summary>
+            <typeparam name="T">Type of object to validate.</typeparam>
+            <param name="value">Object instance to validate.</param>
+            <param name="identifier">Identifier for object instance.</param>
+            <returns>Object instance if no exception is thrown.</returns>
+        </member>
+        <member name="M:Vault.DAL.EntityExtensions.EnsureNotNull``1(``0,System.Object[])">
+            <summary>
+            Validates if object is null => throws EntityNotFoundException.
+            </summary>
+            <typeparam name="T">Type of object to validate.</typeparam>
+            <param name="TValue">Object instance to validate.</param>
+            <param name="identifiers">Array of identifiers for object instance.</param>
+            <returns>Object instance if no exception is thrown.</returns>
+        </member>
+        <member name="T:Vault.DAL.EntityNotFoundException`1">
+            <summary>
+            This exception should be thrown when expected entity for transaction is not found when it should.
+            This is not managed exception and presents either conflict or security breach attempt.
+            Do not throw this exception when performing regular search queries.
+            </summary>
+            <example>
+            Doing something as /Delete/House/3 when there is no House object with Id 3 in the database => conflict.
+            Doing something as /View/Article/43 when user is not allowed to see articles from other users => securith breach.
+            </example>
+            <typeparam name="T">Type of entity exception is related to.</typeparam>
+        </member>
+        <member name="T:Vault.DAL.DbMigrationFileStreamExtensions">
+            <summary>
+            DbMigration extensions for FileStream support.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.DbMigrationFileStreamExtensions.AddFileStreamColumn(System.Data.Entity.Migrations.DbMigration,System.String)">
+            <summary>
+            Adds FileStream column to specified table.
+            </summary>
+            <param name="migration">DbMigration class instance.</param>
+            <param name="tableName">Name of the table.</param>
+        </member>
+        <member name="T:Vault.DAL.FileStreamContext">
+            <summary>
+            Describes FileStream context for R/W operations.
+            </summary>
+        </member>
+        <member name="P:Vault.DAL.FileStreamContext.Path">
+            <summary>
+            Path to location where FileStream document resides.
+            </summary>
+        </member>
+        <member name="P:Vault.DAL.FileStreamContext.Transaction">
+            <summary>
+            Transaction data.
+            </summary>
+        </member>
+        <member name="T:Vault.DAL.IFileStreamEntity">
+            <summary>
+            Defines interface for Entity class that uses FileStream for binary R/W operations.
+            </summary>
+        </member>
+        <member name="P:Vault.DAL.IFileStreamEntity.Data">
+            <summary>
+            Property to be mapped to FileStream.
+            </summary>
+        </member>
+        <member name="P:Vault.DAL.IFileStreamEntity.Stream">
+            <summary>
+            Output stream.
+            </summary>
+        </member>
+        <member name="T:Vault.DAL.IVaultMigrationOperation">
+            <summary>
+            Interface that describes Migration Operations provided by the Vault.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.IVaultMigrationOperation.WriteSql(System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+            <summary>
+            Writes migration SQL to writer.
+            </summary>
+            <param name="writer">IdentedTextWriter class instance.</param>
+        </member>
+        <member name="M:Vault.DAL.DbGeographyExtensions.GetCoordinates(System.Data.Entity.Spatial.DbGeography)">
+            <summary>
+            Returns set of polygon vertices from DbGeography class instance.
+            </summary>
+            <param name="geography">DbGeography class instance.</param>
+            <returns>Collection of polygon vertices.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbGeographyExtensions.FromCoordinates(System.Collections.Generic.ICollection{Vault.Core.Vertex})">
+            <summary>
+            Returns DbGeography instance from set of polygon vertices.
+            </summary>
+            <param name="vertices">Set of polygon vertices.</param>
+            <returns>DbGeography class instance.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbGeographyExtensions.FromCoordinates(System.Double,System.Double)">
+            <summary>
+            Generates DbGeography object for provided longitude/latitude pair.
+            </summary>
+            <param name="longitude">Location's longitude.</param>
+            <param name="latitude">Location's latitude.</param>
+            <returns>DbGeography location object.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbGeographyExtensions.WithinDistance(System.Linq.IQueryable{Vault.DAL.IGeoEntity},System.Double)">
+            <summary>
+            Part of WithinDistance(d).From(lat, lng) query chain. Allows setting the distance to query against.
+            </summary>
+            <param name="queryable">Entity source to query against.</param>
+            <param name="distance">Desired distance from location.</param>
+            <returns>Proxy object that exposes From method.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbGeographyExtensions.DistanceObject.From(System.Double,System.Double)">
+            <summary>
+            Part of WithinDistance(d).From(lat, lng) query chain. Allows setting reference latitude and longitude.
+            </summary>
+            <param name="latitude">Latitude of location to do distance query from.</param>
+            <param name="longitude">Longitude of location to do distance query from.</param>
+            <returns>Queryable with location condition.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbGeographyExtensions.OrderByDistanceFrom(System.Linq.IQueryable{Vault.DAL.IGeoEntity},System.Double,System.Double)">
+            <summary>
+            Adds ordering by distance from specific location.
+            </summary>
+            <param name="queryable">Source of entities to query against.</param>
+            <param name="latitude">Latitude of location from which distance is calculated.</param>
+            <param name="longitude">Longitude of location from which distance is calculated.</param>
+            <returns>Ordered queryable.</returns>
+        </member>
+        <member name="M:Vault.DAL.DbGeographyExtensions.OrderByDescendingDistanceFrom(System.Linq.IQueryable{Vault.DAL.IGeoEntity},System.Double,System.Double)">
+            <summary>
+            Adds ordering by distance from specific location.
+            </summary>
+            <param name="queryable">Source of entities to query against.</param>
+            <param name="latitude">Latitude of location from which distance is calculated.</param>
+            <param name="longitude">Longitude of location from which distance is calculated.</param>
+            <returns>Ordered queryable.</returns>
+        </member>
+        <member name="T:Vault.DAL.IQueryableExtensions">
+            <summary>
+            Provides set of extension methods to IQueryable interface.
+            </summary>
+        </member>
+        <member name="M:Vault.DAL.IQueryableExtensions.Chain``1(System.Linq.IQueryable{``0},System.Collections.Generic.List{System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}}},Vault.DAL.ChainType)">
+            <summary>
+            Converts List of conditional expressions to AND/OR chain.
+            </summary>
+            <typeparam name="T">Type of entity query is built against.</typeparam>
+            <param name="queryable">Queryable entity source.</param>
+            <param name="conditions">List of conditional expressions.</param>
+            <param name="type">Type of chain.</param>
+            <returns>Modified query.</returns>
+        </member>
+        <member name="M:Vault.DAL.IQueryableExtensions.GetGridDataAsync``1(System.Linq.IQueryable{``0},Vault.Core.GridParams,System.String)">
+            <summary>
+            Returns GridData container of DTO objects for specified grid parameters.
+            </summary>
+            <typeparam name="T">Type of DTO object.</typeparam>
+            <param name="query">Search query to execute.</param>
+            <param name="gridParams">Grid parameters.</param>
+            <param name="orderModifier">Modifier for search order.</param>
+            <returns>GridData container.</returns>
+        </member>
+        <member name="M:Vault.DAL.IQueryableExtensions.GetRecordsAsync``1(System.Linq.IQueryable{``0},Vault.Core.GridParams,System.String)">
+            <summary>
+            Returns list of records based on provided query definition and gridParams.
+            </summary>
+            <typeparam name="T">Type of record to expect.</typeparam>
+            <param name="query">Source query.</param>
+            <param name="gridParams">Grid parameters.</param>
+            <param name="orderModifier">Additional sort parameters.</param>
+            <returns>List of records.</returns>
+        </member>
+        <member name="M:Vault.DAL.IQueryableExtensions.GetRecords``1(System.Collections.Generic.IEnumerable{``0},Vault.Core.GridParams,System.String)">
+            <summary>
+            Returns list of records from the collection based on the provided gridParams.
+            </summary>
+            <typeparam name="T">Type of record.</typeparam>
+            <param name="collection">Source query.</param>
+            <param name="gridParams">Grid parameters.</param>
+            <param name="orderModifier">Additional sort parameters.</param>
+            <returns>List of records.</returns>
+        </member>
+        <member name="M:Vault.DAL.IQueryableExtensions.GetGridData``1(System.Collections.Generic.IEnumerable{``0},Vault.Core.GridParams,System.String)">
+            <summary>
+            Returns GridData container for specified collection and provided gridParams.
+            </summary>
+            <typeparam name="T">Type of record.</typeparam>
+            <param name="collection">Collection of items.</param>
+            <param name="gridParams">Grid parameters.</param>
+            <param name="orderModifier">Sort modifier.</param>
+            <returns>GridData container of records.</returns>
+        </member>
+        <member name="M:Vault.DAL.IQueryableExtensions.GetRecordsAsync``1(System.Linq.IQueryable{``0},Vault.Core.SelectParams)">
+            <summary>
+            Returns list of records for Select2.js plugin based on filters specified in SelectParams.
+            </summary>
+            <typeparam name="T">Type of record item.</typeparam>
+            <param name="query">Query to be used for data selection.</param>
+            <param name="selectParams">Filtering parameters.</param>
+            <returns>Collection of items to be displayed in dropdown.</returns>
+        </member>
+        <member name="M:Vault.DAL.IQueryableExtensions.GetSelectDataAsync``1(System.Linq.IQueryable{``0},Vault.Core.SelectParams)">
+            <summary>
+            Returns data for Select2.js plugin based on the filters specified in SelectParams.
+            </summary>
+            <typeparam name="T">Type of dat.a</typeparam>
+            <param name="query">Query to be used for data selection.</param>
+            <param name="selectParams">Filtering parameters.</param>
+            <returns>SelectData wrapper around items to be displayed.</returns>
+        </member>
+    </members>
+</doc>

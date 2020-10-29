@@ -1,0 +1,5 @@
+C:\Users\Lenovo\Desktop\TradingCompany\TradingCompany\bin\Debug\TradingCompany.dll
+C:\Users\Lenovo\Desktop\TradingCompany\TradingCompany\bin\Debug\TradingCompany.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\TradingCompany\obj\Debug\TradingCompany.csprojAssemblyReference.cache
+C:\Users\Lenovo\Desktop\TradingCompany\TradingCompany\obj\Debug\TradingCompany.dll
+C:\Users\Lenovo\Desktop\TradingCompany\TradingCompany\obj\Debug\TradingCompany.pdb
