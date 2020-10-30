@@ -23,6 +23,7 @@ namespace ConsoleTrad
 
         static private UserDTO currentUser;
         static uint TryCount = 3;
+
         public static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.Default;
@@ -191,7 +192,6 @@ namespace ConsoleTrad
             }
             else
             {
-              
                 topic.CommentID = comms[0].ID;
                 Console.WriteLine(topic.CommentID.ToString());
                 topicDal.Add(topic);

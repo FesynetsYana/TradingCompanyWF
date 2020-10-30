@@ -1,0 +1,16 @@
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\DAL.dll
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\DTO.dll
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\AutoMapper.dll
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\DAL.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\DAL.dll.config
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\DTO.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\DTO.dll.config
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\bin\Debug\AutoMapper.xml
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\Lenovo\Desktop\TradingCompany\BusinessLogic\obj\Debug\BusinessLogic.pdb
