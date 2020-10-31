@@ -24,10 +24,21 @@ namespace TopicWF
         {
             InitializeComponent();
             userManager = user;
-            LoadData();
+            //   LoadData();
+            updateTable(userManager.GetAll());
+        }
+        private void updateTable(List<(long ID, string FullName, string Title, string Text)> ls)
+        {
+            foreach (var row in ls)
+            {
+                int rowNumber = dataGridView1.Rows.Add();
+                dataGridView1.Rows[rowNumber].Cells["columnID"].Value = row.ID;
+                dataGridView1.Rows[rowNumber].Cells["columnName"].Value = row.FullName;
+                dataGridView1.Rows[rowNumber].Cells["columnTitle"].Value = row.Title;
+                dataGridView1.Rows[rowNumber].Cells["columnText"].Value = row.Text;
+            }
         }
 
-   
         private void LoadData()
         {
             string connectionString = "Data Source=localhost;Initial Catalog=ManagerNews;Integrated Security=True";
@@ -37,7 +48,7 @@ namespace TopicWF
             myConnection.Open();
 
             string query = "SELECT * FROM Topics ORDER BY ID";
-            SqlCommand command = new SqlCommand(query,myConnection);
+            SqlCommand command = new SqlCommand(query, myConnection);
 
             SqlDataReader reader = command.ExecuteReader();
             List<string[]> data = new List<string[]>();
@@ -57,6 +68,6 @@ namespace TopicWF
                 dataGridView1.Rows.Add(s);
         }
 
-     
+
     }
 }

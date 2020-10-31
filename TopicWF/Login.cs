@@ -41,15 +41,17 @@ namespace TopicWF
             user.Login = txtUsername.Text;
             user.Password = txtPassword.Text;
             isLogIn = userDal.LogIn(user);
+
             if (isLogIn != 0)
             {
                 if (isLogIn == 1)
                 {
-                    userManager = new ClientManager();
+                    //userManager = new ClientManager(user);
                 }
                 else
                 {
-                    userManager = new AdminManager();
+            user.Email = connectionString;
+                    userManager = new AdminManager(user );
                 }
                 TopicList tp = new TopicList(userManager);
                 this.Visible = false;
