@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
+using Microsoft.VisualBasic;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -24,11 +25,12 @@ namespace TopicWF
         {
             InitializeComponent();
             userManager = user;
-            //   LoadData();
+            btnDelete.Visible = btnAdd.Visible =  userManager.addRemovePermitions;
             updateTable(userManager.GetAll());
         }
         private void updateTable(List<(long ID, string FullName, string Title, string Text)> ls)
         {
+            dataGridView1.Rows.Clear();
             foreach (var row in ls)
             {
                 int rowNumber = dataGridView1.Rows.Add();
@@ -68,6 +70,81 @@ namespace TopicWF
                 dataGridView1.Rows.Add(s);
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string input_title = Microsoft.VisualBasic.Interaction.InputBox("Input topik!", "Add", "Title");
+            string input_text = Microsoft.VisualBasic.Interaction.InputBox("Input topik!", "Add", "Text");
+            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("Input topik!", "Add", "Comment");
+
+            if (!string.IsNullOrEmpty(input_title) &&
+                !string.IsNullOrEmpty(input_title) &&
+                !string.IsNullOrEmpty(input_title) &&
+                userManager.AddUser(input_title, input_text, input_comment))
+            {
+                updateTable(userManager.GetAll());
+                //try
+                //{
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show("Incorect input data!\n" + ex.Message.ToString(), "Error", MessageBoxButtons.OK,
+                //                                 MessageBoxIcon.Error);
+                //}
+            }
+
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("Input comment!", "Find", "Comment");
+            if (!string.IsNullOrEmpty(input_comment))
+            {
+                updateTable(userManager.Find(input_comment));
+            }
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string input_id = Microsoft.VisualBasic.Interaction.InputBox("Input topik id!", "Delete", "ID");
+
+            if (!string.IsNullOrEmpty(input_id))
+            {
+                try
+                {
+                    if (userManager.RemoveUser(Convert.ToInt64(input_id)) >= 0)
+                    {
+                        updateTable(userManager.GetAll());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Incorect input data!\n" + ex.Message.ToString(), "Error", MessageBoxButtons.OK,
+                                                 MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Really LogOut?", "LogOut", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+
+                Application.Restart();
+
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Really Quit?", "Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+
+                Application.Exit();
+
+            }
+        }
 
     }
 }

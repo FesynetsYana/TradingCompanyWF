@@ -60,7 +60,7 @@ namespace DAL.Concrete
 
         public List<TopicDTO> GetSort(string column = "Title")
         {
-               List<TopicDTO> Topics = new List<TopicDTO>();
+            List<TopicDTO> Topics = new List<TopicDTO>();
             try
             {
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
@@ -84,7 +84,7 @@ namespace DAL.Concrete
                     return Topics;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 TopicDTO TopicAdd = new TopicDTO();
                 TopicAdd.ID = -1;
@@ -126,18 +126,18 @@ namespace DAL.Concrete
             try
             {
 
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            using (SqlCommand comm = conn.CreateCommand())
-            {
-                conn.Open();
-                comm.CommandText = "Delete from Topics where ID = @ID";
-                comm.Parameters.AddWithValue("@ID", id);
-                comm.ExecuteNonQuery();
-                conn.Close();
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                using (SqlCommand comm = conn.CreateCommand())
+                {
+                    conn.Open();
+                    comm.CommandText = "Delete from Topics where ID = @ID";
+                    comm.Parameters.AddWithValue("@ID", id);
+                    comm.ExecuteNonQuery();
+                    conn.Close();
                     return id;
+                }
             }
-            }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 return -1;
@@ -149,29 +149,29 @@ namespace DAL.Concrete
             try
             {
 
-            using (SqlConnection conn = new SqlConnection(this.connectionString))
-            using (SqlCommand comm = conn.CreateCommand())
-            {
-                conn.Open();
-                comm.CommandText = "select * from Topics where Title Like '%" + title + "%'";
-                SqlDataReader reader = comm.ExecuteReader();
-
-                while (reader.Read())
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
+                using (SqlCommand comm = conn.CreateCommand())
                 {
-                    TopicDTO TopicAdd = new TopicDTO();
-                    TopicAdd.ID = (long)reader["ID"];
-                    TopicAdd.UsersID = (long)reader["UsersID"];
-                    TopicAdd.CommentID = (long)reader["CommentID"];
-                    TopicAdd.Title = reader["Title"].ToString();
-                    TopicAdd.Text = reader["Text"].ToString();
-                    Topics.Add(TopicAdd);
+                    conn.Open();
+                    comm.CommandText = "select * from Topics where Title Like '%" + title + "%'";
+                    SqlDataReader reader = comm.ExecuteReader();
 
+                    while (reader.Read())
+                    {
+                        TopicDTO TopicAdd = new TopicDTO();
+                        TopicAdd.ID = (long)reader["ID"];
+                        TopicAdd.UsersID = (long)reader["UsersID"];
+                        TopicAdd.CommentID = (long)reader["CommentID"];
+                        TopicAdd.Title = reader["Title"].ToString();
+                        TopicAdd.Text = reader["Text"].ToString();
+                        Topics.Add(TopicAdd);
+
+                    }
+                    conn.Close();
+                    return Topics;
                 }
-                conn.Close();
-                return Topics;
             }
-            }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 TopicDTO TopicAdd = new TopicDTO();

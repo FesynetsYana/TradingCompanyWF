@@ -29,13 +29,17 @@ namespace TopicWF
 
         private void btnExit_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
+            if (MessageBox.Show("Really Quit?", "Exit", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+
+                Application.Exit();
+
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(txtPassword.Text + "\n" + txtUsername.Text);
-
             uint isLogIn = 0;
             UserDTO user = new UserDTO();
             user.Login = txtUsername.Text;
@@ -46,12 +50,13 @@ namespace TopicWF
             {
                 if (isLogIn == 1)
                 {
-                    //userManager = new ClientManager(user);
+                    user.Email = connectionString;
+                    userManager = new ClientManager(user);
                 }
                 else
                 {
-            user.Email = connectionString;
-                    userManager = new AdminManager(user );
+                    user.Email = connectionString;
+                    userManager = new AdminManager(user);
                 }
                 TopicList tp = new TopicList(userManager);
                 this.Visible = false;

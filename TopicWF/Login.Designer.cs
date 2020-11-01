@@ -45,7 +45,6 @@
             this.label1.Size = new System.Drawing.Size(102, 25);
             this.label1.TabIndex = 0;
             this.label1.Text = "Username";
-        
             // 
             // txtUsername
             // 
@@ -54,7 +53,6 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(339, 30);
             this.txtUsername.TabIndex = 1;
-      
             // 
             // label2
             // 
@@ -73,34 +71,36 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(339, 30);
             this.txtPassword.TabIndex = 3;
-           
             // 
             // btnLogin
             // 
+            this.btnLogin.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnLogin.Location = new System.Drawing.Point(73, 221);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(233, 62);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnExit
             // 
+            this.btnExit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnExit.Location = new System.Drawing.Point(338, 222);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(233, 61);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click_1);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(661, 353);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnLogin);

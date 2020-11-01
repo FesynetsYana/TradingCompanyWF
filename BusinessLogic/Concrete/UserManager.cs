@@ -1,6 +1,5 @@
 ﻿using System;
 using DTO;
-
 using DAL.Concrete;
 using DAL.Interfaces;
 using System.Collections.Generic;
@@ -12,6 +11,8 @@ namespace BusinessLogic.Concrete
 {
     abstract public class UserManager
     {
+        public bool addRemovePermitions { set; get; }
+
         protected UserDal userDal;
         protected TopicDal topicDal;
         protected CommentDal commentDal;
@@ -19,14 +20,17 @@ namespace BusinessLogic.Concrete
         protected UserDTO currentUser;
         public UserManager(UserDTO user)
         {
+            currentUser = user;
             userDal = new UserDal(user.Email);
             topicDal = new TopicDal(user.Email);
             commentDal = new CommentDal(user.Email);
         }
-        public abstract void Find(string str);
-        //public abstract List<(long ID, string FullName, string Title, string Text)> GetAll();
+        public List<(long ID, string FullName, string Title, string Text)> Find(string str)
+        {
+            return GetJoinAll(topicDal.Find(str));
+        }
 
-       
+
         public  List<(long ID, string FullName, string Title, string Text)> GetAll()
         {
             var topics = topicDal.GetAll();
@@ -34,11 +38,6 @@ namespace BusinessLogic.Concrete
 
             return GetJoinAll(topics);
         }
-        public virtual void PrintSorted()
-        {
-            
-        }
-        //public abstract List<(long ID, string FullName, string Title, string Text)> GetJoinAll(List<TopicDTO> topics);
 
         public List<(long ID, string FullName, string Title, string Text)> GetJoinAll(List<TopicDTO> topics)
         {
@@ -58,9 +57,7 @@ namespace BusinessLogic.Concrete
 
             return ls;
         }
-        public virtual void AddUser()
-        {
-          
-        }
+        public abstract bool AddUser(string title_, string text_, string comment_);
+        public abstract long RemoveUser(long id);
     }
 }
