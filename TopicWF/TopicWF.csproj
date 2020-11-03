@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditTopic.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditTopic.Designer.cs">
-      <DependentUpon>EditTopic.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,9 +61,6 @@
     <Compile Include="TopicList.Designer.cs">
       <DependentUpon>TopicList.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="EditTopic.resx">
-      <DependentUpon>EditTopic.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

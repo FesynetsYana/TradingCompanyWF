@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicWF", "TopicWF\TopicWF.csproj", "{9EE136EC-3C02-4FCB-83F6-E33B1F3BC496}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTests", "BusinessLogicTests\BusinessLogicTests.csproj", "{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{9EE136EC-3C02-4FCB-83F6-E33B1F3BC496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE136EC-3C02-4FCB-83F6-E33B1F3BC496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EE136EC-3C02-4FCB-83F6-E33B1F3BC496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

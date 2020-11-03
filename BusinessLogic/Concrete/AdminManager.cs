@@ -17,7 +17,7 @@ namespace BusinessLogic.Concrete
             addRemovePermitions = true;
         }
 
-        public override bool AddUser(string title_, string text_, string comment_)
+        public override bool AddTopic(string title_, string text_, string comment_)
         {
             TopicDTO topic = new TopicDTO();
 
@@ -40,7 +40,7 @@ namespace BusinessLogic.Concrete
             topicDal.Add(topic);
             return true;
         }
-        public override long RemoveUser(long id)
+        public override long DeleteTopic(long id)
         {
             return topicDal.Delete(id);
         }

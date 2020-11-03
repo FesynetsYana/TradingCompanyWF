@@ -72,14 +72,14 @@ namespace TopicWF
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string input_title = Microsoft.VisualBasic.Interaction.InputBox("Input topik!", "Add", "Title");
-            string input_text = Microsoft.VisualBasic.Interaction.InputBox("Input topik!", "Add", "Text");
-            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("Input topik!", "Add", "Comment");
+            string input_title = Microsoft.VisualBasic.Interaction.InputBox("Input Title!", "Add", "Title");
+            string input_text = Microsoft.VisualBasic.Interaction.InputBox("Input Text!", "Add", "Text");
+            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("Input Comment!", "Add", "Comment");
 
             if (!string.IsNullOrEmpty(input_title) &&
                 !string.IsNullOrEmpty(input_title) &&
                 !string.IsNullOrEmpty(input_title) &&
-                userManager.AddUser(input_title, input_text, input_comment))
+                userManager.AddTopic(input_title, input_text, input_comment))
             {
                 updateTable(userManager.GetAll());
                 //try
@@ -97,7 +97,7 @@ namespace TopicWF
 
         private void btnFind_Click(object sender, EventArgs e)
         {
-            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("Input comment!", "Find", "Comment");
+            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("What do you want to find? Input Title!", "Find", "Smth from Title");
             if (!string.IsNullOrEmpty(input_comment))
             {
                 updateTable(userManager.Find(input_comment));
@@ -107,20 +107,20 @@ namespace TopicWF
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            string input_id = Microsoft.VisualBasic.Interaction.InputBox("Input topik id!", "Delete", "ID");
+            string input_id = Microsoft.VisualBasic.Interaction.InputBox("Input topic id!", "Delete", "ID");
 
             if (!string.IsNullOrEmpty(input_id))
             {
                 try
                 {
-                    if (userManager.RemoveUser(Convert.ToInt64(input_id)) >= 0)
+                    if (userManager.DeleteTopic(Convert.ToInt64(input_id)) >= 0)
                     {
                         updateTable(userManager.GetAll());
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Incorect input data!\n" + ex.Message.ToString(), "Error", MessageBoxButtons.OK,
+                    MessageBox.Show("Incorrect input data!\n" + ex.Message.ToString(), "Error", MessageBoxButtons.OK,
                                                  MessageBoxIcon.Error);
                 }
             }

@@ -18,7 +18,6 @@ C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\DTO.dll.config
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\EntityFramework.xml
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\AutoMapper.xml
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.csproj.CopyComplete
-C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.EditTopic.resources
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\obj\Debug\TopicWF.TopicList.resources
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\BusinessLogic.dll
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWF\bin\Debug\BusinessLogic.pdb

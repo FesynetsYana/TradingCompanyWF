@@ -39,7 +39,7 @@ namespace BusinessLogic.Concrete
             return GetJoinAll(topics);
         }
 
-        public List<(long ID, string FullName, string Title, string Text)> GetJoinAll(List<TopicDTO> topics)
+        protected List<(long ID, string FullName, string Title, string Text)> GetJoinAll(List<TopicDTO> topics)
         {
             var users = userDal.GetAll();
             var comments = commentDal.GetAll();
@@ -57,7 +57,7 @@ namespace BusinessLogic.Concrete
 
             return ls;
         }
-        public abstract bool AddUser(string title_, string text_, string comment_);
-        public abstract long RemoveUser(long id);
+        public abstract bool AddTopic(string title_, string text_, string comment_);
+        public abstract long DeleteTopic(long id);
     }
 }
