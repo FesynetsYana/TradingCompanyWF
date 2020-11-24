@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicWF", "TopicWF\TopicWF.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicTests", "BusinessLogicTests\BusinessLogicTests.csproj", "{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopicWPF", "TopicWPF\TopicWPF.csproj", "{1A22D076-3E7D-4D93-819F-204FF679D59E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFDFCC98-689A-4BFB-842F-F6DE39B07DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A22D076-3E7D-4D93-819F-204FF679D59E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A22D076-3E7D-4D93-819F-204FF679D59E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A22D076-3E7D-4D93-819F-204FF679D59E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A22D076-3E7D-4D93-819F-204FF679D59E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
