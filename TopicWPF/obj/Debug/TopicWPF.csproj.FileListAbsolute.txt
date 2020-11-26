@@ -25,3 +25,5 @@ C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicWPF.csproj.Genera
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicWPF.csproj.CopyComplete
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicWPF.exe
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicWPF.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicList.g.cs
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicList.baml

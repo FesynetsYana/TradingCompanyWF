@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using BusinessLogic.Concrete;
+using BusinessLogic.Interfaces;
 
 namespace TopicWF
 {
@@ -24,8 +25,6 @@ namespace TopicWF
             InitializeComponent();
             userDal = new UserDal(connectionString);
         }
-
-
 
         private void btnExit_Click_1(object sender, EventArgs e)
         {

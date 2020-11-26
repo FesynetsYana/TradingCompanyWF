@@ -44,6 +44,7 @@
     <Compile Include="Concrete\AdminManager.cs" />
     <Compile Include="Concrete\ClientManager.cs" />
     <Compile Include="Concrete\UserManager.cs" />
+    <Compile Include="Interfaces\IUserManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

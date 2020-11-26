@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Concrete;
+using BusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,10 +44,10 @@ namespace TopicWPF.ViewModels
             _security = security;
         }
 
-        public bool Login()
-        {
-            return _security.Login(Username, Password);
-        }
+        //public bool Login()
+        //{
+        //    return _security.Login(Username, Password);
+        //}
 
     }
 

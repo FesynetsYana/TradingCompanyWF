@@ -1,0 +1,97 @@
+﻿<Window x:Class="TopicWPF.TopicList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TopicWPF"
+        mc:Ignorable="d"
+        Title="TopicList" Height="450" Width="800" FontFamily="Helvetica" 
+        Background="White">
+
+    <Window.Resources>
+        <CollectionViewSource 
+                  Source="{Binding Path=TopicList}"   
+                  x:Key="TopicCollection" />
+    </Window.Resources>
+
+
+
+    <Grid>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"  />
+            <ColumnDefinition Width="37*" />
+            <ColumnDefinition Width="55*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="539*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0" 
+                   Text="Search:" 
+                   Margin="10,10,10,9" 
+                 
+                   />
+
+
+
+        <TextBox Grid.Column="1"
+                 Grid.Row="0"
+                 Margin="10,10,9.762,10" 
+                 TextChanged="txtSearch_TextChanged"
+                 x:Name="txtSearch" Grid.ColumnSpan="5" />
+        <DataGrid Grid.Row="1" 
+                  Grid.ColumnSpan="6"
+                 Background="AliceBlue"
+                  
+
+            ItemsSource="{Binding Source={StaticResource TopicCollection}}" 
+             x:Name="dgTopics"
+             AutoGenerateColumns="False"
+             SelectionMode="Single"
+             SelectionUnit="FullRow"
+             GridLinesVisibility="Horizontal"
+             CanUserDeleteRows="False"
+             CanUserAddRows="False" 
+             CanUserResizeRows="False"
+             MouseDoubleClick="dgTopics_MouseDoubleClick" Margin="0,0,-0.238,0" 
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="SizeToCells" IsReadOnly="True" MinWidth="40" Binding="{Binding ID}" />
+                <DataGridTextColumn Header="Name" Width="SizeToCells" IsReadOnly="True" MinWidth="100" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Title" Width="SizeToCells" IsReadOnly="True" MinWidth="250" Binding="{Binding Title}"/>
+                <DataGridTextColumn Header="Text" Width="SizeToCells" IsReadOnly="True" MinWidth="300" Binding="{Binding Text}"/>
+
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="51.333,0,87.762,-0.333" Grid.ColumnSpan="4">
+            <Button Content="Add topic" Width="100" Height="20" Background="Transparent" x:Name="btnAddTopic" Margin="20"  Click="btnAddTopic_Click"/>
+            <Button Content="Delete topic" Width="100" Height="20" Background="Transparent" x:Name="btnDeleteTopic" Margin="20"  Click="btnDeleteTopic_Click"/>
+            <Button Content="LogOut" Width="100" Height="20" Click="btnLogOut_Click" Background="Transparent" Margin="20" />
+            <Button Content="Cancel" Height="20" IsCancel="True" Background="Transparent"  Width="100" Margin="20" Click="ButtonCancel_Click" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>
