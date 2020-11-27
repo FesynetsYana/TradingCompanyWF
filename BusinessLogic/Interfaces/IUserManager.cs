@@ -1,4 +1,5 @@
 ﻿using System;
+using DTO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ namespace BusinessLogic.Interfaces
 {
     public interface IUserManager
     {
-        bool Login(string username, string password);
+        List<UserDTO> GetAll();
+        List<UserDTO> Find(string fullName);
+        List<UserDTO> GetSort(string column = "FullName");
+        UserDTO Add(UserDTO user);//changed
+        void Delete(int id);
     }
 }

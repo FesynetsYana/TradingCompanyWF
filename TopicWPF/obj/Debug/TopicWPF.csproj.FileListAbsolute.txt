@@ -27,3 +27,13 @@ C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicWPF.exe
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicWPF.pdb
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicList.g.cs
 C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\TopicList.baml
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\Unity.Abstractions.dll
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\Unity.Container.dll
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\Unity.Abstractions.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\bin\Debug\Unity.Container.pdb
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\AddTopicWindow.g.cs
+C:\Users\Lenovo\Desktop\TradingCompany\TopicWPF\obj\Debug\AddTopicWindow.baml

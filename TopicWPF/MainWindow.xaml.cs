@@ -33,31 +33,18 @@ namespace TopicWPF
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-
-        void PasswordChangedHandler(Object sender, RoutedEventArgs args)
-        {
-            if (this.DataContext != null)
-            {
-                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password;
-            }
-        }
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            for (int intCounter = App.Current.Windows.Count - 1; intCounter >= 0; intCounter--)
+                App.Current.Windows[intCounter].Close();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             uint isLogIn = 0;
             UserDTO user = new UserDTO();
-            user.Login = username.Text;
-            //user.Password = pwdBox.;
+            user.Login = txt_Login.Text;
+            user.Password = txt_Password.Text;
             isLogIn = userDal.LogIn(user);
 
             if (isLogIn != 0)
@@ -77,6 +64,10 @@ namespace TopicWPF
                 tp.Show();
             }
 
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }

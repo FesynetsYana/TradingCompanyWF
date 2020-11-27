@@ -41,7 +41,7 @@
             <StackPanel Grid.Row="1" >
                 <StackPanel Orientation="Horizontal">
                     <TextBox
-                        Name="username"
+                        Name="txt_Login"
                         FontFamily="Helvetica" 
                            FontWeight="Light" 
                            FontSize="20"
@@ -58,10 +58,11 @@
                 <Border Width="235" Height="2" Background="White" Opacity="0.5"/>
 
                 <StackPanel Orientation="Horizontal" Margin="0, 20, 0, 0">
-                    <PasswordBox
-                        Name="pwdBox" 
+                    <TextBox
+                        Name="txt_Password" 
                         FontFamily="Helvetica" 
                            FontWeight="Light" 
+                        Text="PASSWORD"
                            FontSize="20"
                            Foreground="White" 
                            Background="Transparent"
@@ -69,7 +70,7 @@
                            Width="240"
                            Height="25"
                            Margin="70, 0, 0, 0"
-                            PasswordChanged="PasswordChangedHandler"/>
+                          />
 
                 </StackPanel>
                 <Border Width="235" Height="2" Background="White" Opacity="0.5"/>

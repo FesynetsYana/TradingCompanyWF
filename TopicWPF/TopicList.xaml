@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:TopicWPF"
         mc:Ignorable="d"
         Title="TopicList" Height="450" Width="800" FontFamily="Helvetica" 
-        Background="White">
+        Background="White"
+        Loaded="Window_Loaded">
 
     <Window.Resources>
         <CollectionViewSource 
@@ -16,7 +17,7 @@
 
 
 
-    <Grid>
+    <Grid Height="421" Margin="0,0,0.333,-0.333" VerticalAlignment="Bottom">
 
 
         <Grid.ColumnDefinitions>
@@ -34,6 +35,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        
 
 
 
@@ -65,7 +67,7 @@
              CanUserDeleteRows="False"
              CanUserAddRows="False" 
              CanUserResizeRows="False"
-             MouseDoubleClick="dgTopics_MouseDoubleClick" Margin="0,0,-0.238,0" 
+             MouseDoubleClick="dgTopics_MouseDoubleClick" Margin="0,0,-0.238,0" SelectionChanged="dgTopics_SelectionChanged" 
                   >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="SizeToCells" IsReadOnly="True" MinWidth="40" Binding="{Binding ID}" />
@@ -85,11 +87,12 @@
             </DataGrid.CellStyle>
         </DataGrid>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="51.333,0,87.762,-0.333" Grid.ColumnSpan="4">
-            <Button Content="Add topic" Width="100" Height="20" Background="Transparent" x:Name="btnAddTopic" Margin="20"  Click="btnAddTopic_Click"/>
-            <Button Content="Delete topic" Width="100" Height="20" Background="Transparent" x:Name="btnDeleteTopic" Margin="20"  Click="btnDeleteTopic_Click"/>
-            <Button Content="LogOut" Width="100" Height="20" Click="btnLogOut_Click" Background="Transparent" Margin="20" />
-            <Button Content="Cancel" Height="20" IsCancel="True" Background="Transparent"  Width="100" Margin="20" Click="ButtonCancel_Click" />
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="51.333,0,87.762,-0.333" Grid.ColumnSpan="6">
+            <Button Content="Add " Width="75" Height="20" Background="Transparent" x:Name="btnAddTopic" Margin="20"  Click="btnAddTopic_Click"/>
+            <Button Content="Update" Width="75" Height="20 " Background="Transparent" x:Name="btnUpdate" Margin="20" Click="btnUpdateTopic_Click"/>
+            <Button Content="Delete " Width="75" Height="20" Background="Transparent" x:Name="btnDeleteTopic" Margin="20"  Click="btnDeleteTopic_Click"/>
+            <Button Content="LogOut" Width="75" Height="20" Click="btnLogOut_Click" Background="Transparent" Margin="20" />
+            <Button Content="Cancel"  Height="20" IsCancel="True" Background="Transparent"  Width="75" Margin="20" Click="ButtonCancel_Click" />
 
         </StackPanel>
 
