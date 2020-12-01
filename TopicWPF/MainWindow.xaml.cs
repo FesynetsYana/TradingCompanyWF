@@ -27,7 +27,7 @@ namespace TopicWPF
         private UserDal userDal;
         private string connectionString = "Data Source=localhost;Initial Catalog=ManagerNews;Integrated Security=True";
         public MainWindow()
-        {
+        {   
             InitializeComponent();
             userDal = new UserDal(connectionString);
 
@@ -60,15 +60,11 @@ namespace TopicWPF
                     userManager = new AdminManager(user);
                 }
                 TopicList tp = new TopicList(userManager);
-                //this.Visible = false;
+                this.Visibility = Visibility.Hidden;
                 tp.Show();
+
             }
-
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

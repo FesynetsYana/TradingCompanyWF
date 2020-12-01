@@ -14,154 +14,119 @@ using System.Data;
 using System.Configuration;
 using System.Windows.Documents;
 using System.Windows.Input;
+using Microsoft.VisualBasic;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace TopicWPF
 {
     /// <summary>
     /// Interaction logic for TopicList.xaml
     /// </summary>
+    public class Itm
+    {
+        public long ID { get; set; }
+        public string FullName { get; set; }
+        public string Title { get; set; }
+        public string Text { get; set; }
+    }
     public partial class TopicList : Window
     {
-        string connectionString;
-        SqlDataAdapter adapter;
-        DataTable topicTable; 
 
-         private UserManager userManager;
+        private UserManager userManager;
+
         public TopicList(UserManager user)
         {
             InitializeComponent();
-            connectionString = ConfigurationManager.ConnectionStrings["ManagerNews"].ConnectionString;
-
-            dgTopics.RowEditEnding += TopicGrid_RowEditEnding;
-
             userManager = user;
-            //btnDeleteTopic.Visible = btnAddTopic.Visible = userManager.addRemovePermitions;
-            //updateTable(userManager.GetAll());
+
+            btnDelete.Visibility = btnAdd.Visibility = (userManager.addRemovePermitions ? Visibility.Visible : Visibility.Hidden);
+            updateTable(userManager.GetAll());
         }
-
-        private void TopicGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        private void updateTable(List<(long ID, string FullName, string Title, string Text)> ls)
         {
-            UpdateDB();
-        }
-
-        
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            string sql = "SELECT * FROM Topics";
-            topicTable = new DataTable();
-            SqlConnection connection = null;
-            try
+            dataGridView1.Items.Clear();
+            foreach (var row in ls)
             {
-                connection = new SqlConnection(connectionString);
-                SqlCommand command = new SqlCommand(sql, connection);
-                adapter = new SqlDataAdapter(command);
-
-                adapter.InsertCommand = new SqlCommand("sp_InsertTopic", connection);
-                adapter.InsertCommand = new SqlCommand("sp_InsertUser", connection);
-                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
-
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 100, "FullName"));
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@title", SqlDbType.NVarChar, 100, "Title"));
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@text", SqlDbType.NVarChar, 100, "Text"));
-
-                SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@ID", SqlDbType.Int, 0, "ID");
-                parameter.Direction = ParameterDirection.Output;
-
-                connection.Open();
-                adapter.Fill(topicTable);
-
-                dgTopics.ItemsSource = topicTable.DefaultView;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                if (connection != null)
-                    connection.Close();
+                Itm it = new Itm();
+                it.ID = row.ID;
+                it.FullName = row.FullName;
+                it.Title = row.Title;
+                it.Text = row.Text;
+                dataGridView1.Items.Add(it);
             }
         }
 
-        private void UpdateDB()
+        private void btnAddTopic_Click(object sender, EventArgs e)
         {
-            SqlCommandBuilder comandbuilder = new SqlCommandBuilder(adapter);
-            adapter.Update(topicTable);
-        }
- 
+            string input_title = Microsoft.VisualBasic.Interaction.InputBox("Input Title!", "Add", "Title");
+            string input_text = Microsoft.VisualBasic.Interaction.InputBox("Input Text!", "Add", "Text");
+            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("Input Comment!", "Add", "Comment");
 
-        private void _topicCollection_Filter(object sender, FilterEventArgs e)
-        {
-            var filter = txtSearch.Text;
-            var topic = e.Item as TopicDTO;
-            if (topic.Title.Contains(filter) || topic.Text.ToString().Contains(filter))
+            if (!string.IsNullOrEmpty(input_title) &&
+                !string.IsNullOrEmpty(input_title) &&
+                !string.IsNullOrEmpty(input_title) &&
+                userManager.AddTopic(input_title, input_text, input_comment))
             {
-                e.Accepted = true;
+                updateTable(userManager.GetAll());
             }
-            else
-            {
-                e.Accepted = false;
-            }
+
         }
 
-
-        private void btnDeleteTopic_Click(object sender, RoutedEventArgs e)
+        private void ButtonFind_Click(object sender, EventArgs e)
         {
-            if (dgTopics.SelectedItems != null)
+            string input_comment = Microsoft.VisualBasic.Interaction.InputBox("What do you want to find? Input Title!", "Find", "Smth from Title");
+            if (!string.IsNullOrEmpty(input_comment))
             {
-                for (int i = 0; i < dgTopics.SelectedItems.Count; i++)
+                updateTable(userManager.Find(input_comment));
+            }
+
+        }
+
+        private void dataGridView1_MouseRightButtonDown(object sender, EventArgs e)
+        {
+            updateTable(userManager.GetAll());
+
+        }
+        private void btnDeleteTopic_Click(object sender, EventArgs e)
+        {
+            string input_id = Microsoft.VisualBasic.Interaction.InputBox("Input topic id!", "Delete", "ID");
+
+            if (!string.IsNullOrEmpty(input_id))
+            {
+                try
                 {
-                    DataRowView datarowView = dgTopics.SelectedItems[i] as DataRowView;
-                    if (datarowView != null)
+                    if (userManager.DeleteTopic(Convert.ToInt64(input_id)) >= 0)
                     {
-                        DataRow dataRow = (DataRow)datarowView.Row;
-                        dataRow.Delete();
+                        updateTable(userManager.GetAll());
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Incorrect input data!\n" + ex.Message.ToString(), "Error");
+                }
             }
-            UpdateDB();
         }
 
-        private void btnLogOut_Click(object sender, RoutedEventArgs e)
+        private void btnLogOut_Click(object sender, EventArgs e)
         {
             var mv = new MainWindow();
             mv.Show();
             this.Close();
         }
 
-        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, EventArgs e)
         {
             for (int intCounter = App.Current.Windows.Count - 1; intCounter >= 0; intCounter--)
                 App.Current.Windows[intCounter].Close();
         }
-        
-        private void btnAddTopic_Click(object sender, RoutedEventArgs e)
+
+        private void dataGridView1_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-        }
-
-        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(dgTopics.ItemsSource).Refresh();
-
-        }
-
-        private void dgTopics_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-
-        private void dgTopics_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void btnUpdateTopic_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateDB();
         }
     }
 }

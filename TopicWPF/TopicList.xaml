@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TopicList" Height="450" Width="800" FontFamily="Helvetica" 
         Background="White"
-        Loaded="Window_Loaded">
+        >
 
     <Window.Resources>
         <CollectionViewSource 
@@ -35,31 +35,13 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
 
-
-
-        <TextBlock Grid.Column="0"
-                   Grid.Row="0" 
-                   Text="Search:" 
-                   Margin="10,10,10,9" 
-                 
-                   />
-
-
-
-        <TextBox Grid.Column="1"
-                 Grid.Row="0"
-                 Margin="10,10,9.762,10" 
-                 TextChanged="txtSearch_TextChanged"
-                 x:Name="txtSearch" Grid.ColumnSpan="5" />
-        <DataGrid Grid.Row="1" 
+        <DataGrid 
                   Grid.ColumnSpan="6"
                  Background="AliceBlue"
                   
-
             ItemsSource="{Binding Source={StaticResource TopicCollection}}" 
-             x:Name="dgTopics"
+             x:Name="dataGridView1"
              AutoGenerateColumns="False"
              SelectionMode="Single"
              SelectionUnit="FullRow"
@@ -67,15 +49,19 @@
              CanUserDeleteRows="False"
              CanUserAddRows="False" 
              CanUserResizeRows="False"
-             MouseDoubleClick="dgTopics_MouseDoubleClick" Margin="0,0,-0.238,0" SelectionChanged="dgTopics_SelectionChanged" 
-                  >
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Width="SizeToCells" IsReadOnly="True" MinWidth="40" Binding="{Binding ID}" />
-                <DataGridTextColumn Header="Name" Width="SizeToCells" IsReadOnly="True" MinWidth="100" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Title" Width="SizeToCells" IsReadOnly="True" MinWidth="250" Binding="{Binding Title}"/>
-                <DataGridTextColumn Header="Text" Width="SizeToCells" IsReadOnly="True" MinWidth="300" Binding="{Binding Text}"/>
 
+                  
+            
+            Height="324" Grid.RowSpan="2" 
+            VerticalAlignment="Bottom"        >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="ID" Binding="{Binding Path=ID}" Width="40" Header="ID" />
+                <DataGridTextColumn x:Name="FullName" Binding="{Binding Path=FullName}" Width="100" Header="Name"/>
+                <DataGridTextColumn x:Name="Title" Binding="{Binding Path=Title}" Width="250" Header="Title"/>
+                <DataGridTextColumn x:Name="Text" Binding="{Binding Path=Text}" Width="350" Header="Text"/>
             </DataGrid.Columns>
+            
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Style.Triggers>
@@ -88,9 +74,10 @@
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" Margin="51.333,0,87.762,-0.333" Grid.ColumnSpan="6">
-            <Button Content="Add " Width="75" Height="20" Background="Transparent" x:Name="btnAddTopic" Margin="20"  Click="btnAddTopic_Click"/>
-            <Button Content="Update" Width="75" Height="20 " Background="Transparent" x:Name="btnUpdate" Margin="20" Click="btnUpdateTopic_Click"/>
-            <Button Content="Delete " Width="75" Height="20" Background="Transparent" x:Name="btnDeleteTopic" Margin="20"  Click="btnDeleteTopic_Click"/>
+            <Button Content="Add " Width="75" Height="20" Background="Transparent" x:Name="btnAdd" Margin="20"  Click="btnAddTopic_Click    "/>
+            <!--<Button Content="Update" Width="75" Height="20 " Background="Transparent" x:Name="btnUpdate" Margin="20" Click="btnUpdateTopic_Click"/>-->
+            <Button Content="Delete " Width="75" Height="20" Background="Transparent" x:Name="btnDelete" Margin="20"  Click="btnDeleteTopic_Click"/>
+            <Button Content="Find"  Height="20" IsCancel="True" Background="Transparent"  Width="75" Margin="20" Click="ButtonFind_Click" />
             <Button Content="LogOut" Width="75" Height="20" Click="btnLogOut_Click" Background="Transparent" Margin="20" />
             <Button Content="Cancel"  Height="20" IsCancel="True" Background="Transparent"  Width="75" Margin="20" Click="ButtonCancel_Click" />
 

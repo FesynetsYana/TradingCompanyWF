@@ -46,8 +46,8 @@ namespace TopicWPF.ViewModels
 
         public void Update()
         {
-            var topics = _manager.GetAll();
-            //TopicList = new ObservableCollection<TopicDTO>(topics);
+            var topics= _manager.GetAll();
+          //  TopicList = new ObservableCollection<TopicDTO>(topics);
         }
     }
 }

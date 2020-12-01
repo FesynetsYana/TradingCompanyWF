@@ -47,12 +47,12 @@
                            FontSize="20"
                            Foreground="White" 
                            Background="Transparent"
-                           Text="LOGIN"
+                           Text="1"
                            Opacity="0.5"
                            Width="240"
                            Height="25"
                            Margin="70, 0, 0, 0"
-                        TextChanged="TextBox_TextChanged"/>
+                        />
 
                 </StackPanel>
                 <Border Width="235" Height="2" Background="White" Opacity="0.5"/>
@@ -62,7 +62,7 @@
                         Name="txt_Password" 
                         FontFamily="Helvetica" 
                            FontWeight="Light" 
-                        Text="PASSWORD"
+                        Text="1"
                            FontSize="20"
                            Foreground="White" 
                            Background="Transparent"
